@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Smart — Flavonoids</title>
+<meta name="description" content="A revision tool for Flavonoids in Pharmacognosy: key notes, structural diagrams, a topic map, flash cards, and a quiz bank.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F1ECDD;
+  --paper-2:#E7DFC7;
+  --panel:#FBF8F0;
+  --ink:#20291D;
+  --ink-soft:#544E3E;
+  --line:rgba(32,41,29,.16);
+  --line-strong:rgba(32,41,29,.32);
+  --gold:#B4872A;
+  --gold-deep:#8C6A1E;
+  --gold-tint:#F1E2BB;
+  --wine:#7C2545;
+  --wine-tint:#F0D9E1;
+  --leaf:#43613A;
+  --leaf-tint:#DCE6D2;
+  --shadow: 0 1px 0 rgba(32,41,29,.05);
+  --radius: 3px;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  line-height:1.5;
+}
+h1,h2,h3,h4{
+  font-family:'Newsreader',Georgia,serif;
+  font-weight:600;
+  margin:0;
+  color:var(--ink);
+}
+p{margin:0 0 .8em;}
+button{font-family:inherit;}
+::selection{background:var(--gold-tint);}
+:focus-visible{outline:2px solid var(--wine); outline-offset:2px;}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+}
+
+/* ---------- Layout shell ---------- */
+.app{max-width:1180px; margin:0 auto; padding:0 18px 60px;}
+
+.masthead{
+  padding:34px 0 20px;
+  border-bottom:1px solid var(--line-strong);
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.masthead-text .eyebrow{
+  font-size:.72rem;
+  letter-spacing:.02em;
+  color:var(--wine);
+  font-weight:600;
+  margin-bottom:6px;
+}
+.masthead h1{
+  font-size:clamp(2.1rem, 5vw, 3.1rem);
+  line-height:1.02;
+  letter-spacing:-.01em;
+}
+.masthead h1 em{font-style:italic; color:var(--gold-deep);}
+.masthead .sub{
+  color:var(--ink-soft);
+  font-size:1rem;
+  max-width:42ch;
+  margin-top:8px;
+}
+.mark{
+  width:96px;height:96px;flex:0 0 auto;
+}
+
+/* Tab nav — herbarium index tabs */
+nav.tabs{
+  position:sticky; top:0; z-index:40;
+  background:var(--paper);
+  padding-top:16px;
+  border-bottom:1px solid var(--line-strong);
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+nav.tabs::-webkit-scrollbar{display:none;}
+nav.tabs button{
+  flex:0 0 auto;
+  display:flex; align-items:center; gap:8px;
+  background:var(--paper-2);
+  border:1px solid var(--line-strong);
+  border-bottom:none;
+  color:var(--ink-soft);
+  padding:11px 16px 10px;
+  border-radius:8px 8px 0 0;
+  font-size:.86rem;
+  font-weight:600;
+  cursor:pointer;
+  white-space:nowrap;
+  transform:translateY(1px);
+  transition:transform .15s ease, background .15s ease, color .15s ease;
+}
+nav.tabs button svg{width:16px;height:16px; stroke:currentColor; fill:none;}
+nav.tabs button[aria-selected="true"]{
+  background:var(--panel);
+  color:var(--ink);
+  border-color:var(--line-strong);
+  transform:translateY(0);
+  box-shadow: 0 -2px 0 var(--gold) inset;
+}
+nav.tabs button:hover{color:var(--ink);}
+
+main{background:var(--panel); border:1px solid var(--line-strong); border-top:none; padding:30px clamp(16px,4vw,40px) 44px; border-radius:0 0 10px 10px;}
+.panel{display:none;}
+.panel.active{display:block; animation:fade .28s ease;}
+@keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;}}
+
+.section-head{margin-bottom:22px; max-width:70ch;}
+.section-head h2{font-size:1.7rem;}
+.section-head p{color:var(--ink-soft); margin-top:6px;}
+
+/* ---------- Overview ---------- */
+.law-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:14px;
+  margin-bottom:26px;
+}
+.law-card{
+  border:1px solid var(--line-strong);
+  background:var(--paper);
+  border-radius:8px;
+  padding:16px 17px;
+}
+.law-card h3{font-size:1.02rem; margin-bottom:6px;}
+.law-card .tag{
+  display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:.03em;
+  color:var(--wine); background:var(--wine-tint); padding:2px 8px; border-radius:20px; margin-bottom:8px;
+}
+.law-card p{color:var(--ink-soft); font-size:.92rem; margin:0;}
+.law-card code{background:var(--gold-tint); padding:1px 6px; border-radius:4px; font-family:inherit; font-weight:600; color:var(--gold-deep); font-size:.86rem;}
+
+.overview-block{margin:30px 0;}
+.overview-block h3{font-size:1.15rem; border-bottom:1px solid var(--line); padding-bottom:8px; margin-bottom:12px;}
+.kv-list{display:grid; gap:8px;}
+.kv-list .row{
+  display:grid; grid-template-columns:180px 1fr; gap:14px;
+  padding:9px 0; border-bottom:1px dashed var(--line);
+  font-size:.93rem;
+}
+.kv-list .row b{color:var(--wine); font-weight:600;}
+.kv-list .row span{color:var(--ink-soft);}
+
+.equation{
+  background:var(--ink); color:var(--paper);
+  font-family:'Newsreader',serif; font-size:1.15rem; font-style:italic;
+  padding:16px 20px; border-radius:8px; margin:14px 0; text-align:center; letter-spacing:.01em;
+}
+.equation small{display:block; font-family:'Inter',sans-serif; font-style:normal; font-size:.72rem; opacity:.7; margin-top:6px;}
+
+.pathway-mini{
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:.86rem; margin:10px 0 4px;
+}
+.pathway-mini .node{background:var(--leaf-tint); color:var(--leaf); border:1px solid var(--leaf); border-radius:20px; padding:5px 11px; font-weight:600;}
+.pathway-mini .arrow{color:var(--ink-soft);}
+
+/* ---------- Diagrams ---------- */
+.subtabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;}
+.subtabs button{
+  border:1px solid var(--line-strong); background:var(--paper); color:var(--ink-soft);
+  padding:8px 14px; border-radius:20px; font-size:.83rem; font-weight:600; cursor:pointer;
+}
+.subtabs button[aria-selected="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+.diagram-panel{display:none;}
+.diagram-panel.active{display:grid; grid-template-columns: 1.3fr 1fr; gap:22px; align-items:start;}
+@media (max-width:820px){ .diagram-panel.active{grid-template-columns:1fr;} }
+
+.diagram-stage{
+  background:var(--paper); border:1px solid var(--line-strong); border-radius:10px; padding:14px;
+}
+.diagram-stage svg{width:100%; height:auto; display:block;}
+.hotspot{cursor:pointer;}
+.hotspot circle{fill:var(--gold); stroke:var(--panel); stroke-width:2; transition:r .15s ease, fill .15s ease;}
+.hotspot text{font-size:11px; font-weight:700; fill:var(--panel); pointer-events:none; font-family:'Inter',sans-serif;}
+.hotspot:hover circle,.hotspot.active circle{fill:var(--wine); r:12;}
+.skel-line{stroke:var(--ink); stroke-width:2; fill:none;}
+.skel-fill{fill:var(--paper-2); stroke:var(--ink); stroke-width:2;}
+.skel-dbl{stroke:var(--ink); stroke-width:2;}
+
+.info-card{
+  border:1px solid var(--line-strong); background:var(--paper); border-radius:10px; padding:18px 20px; min-height:220px;
+}
+.info-card h4{font-size:1.05rem; color:var(--wine); margin-bottom:8px;}
+.info-card p{color:var(--ink-soft); font-size:.92rem; margin:0;}
+.info-card .placeholder{color:var(--ink-soft); font-style:italic; opacity:.75;}
+
+.flow-row{display:flex; flex-wrap:wrap; align-items:stretch; gap:0; margin-bottom:6px;}
+.flow-box{
+  background:var(--paper); border:1px solid var(--line-strong); border-radius:8px;
+  padding:11px 14px; font-size:.85rem; font-weight:600; cursor:pointer; text-align:center; min-width:110px;
+  transition:background .15s ease, color .15s ease, border-color .15s ease;
+}
+.flow-box:hover{border-color:var(--wine);}
+.flow-box.active{background:var(--wine); color:#fff; border-color:var(--wine);}
+.flow-arrow{display:flex; align-items:center; padding:0 8px; color:var(--ink-soft); font-size:1.1rem;}
+.flow-branch{margin-left:26px; margin-top:6px; padding-left:14px; border-left:2px dotted var(--line-strong);}
+
+.class-cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px;}
+.class-card{
+  border:1px solid var(--line-strong); border-radius:8px; padding:12px; background:var(--paper); cursor:pointer;
+}
+.class-card b{display:block; font-size:.93rem; margin-bottom:4px;}
+.class-card span{font-size:.76rem; color:var(--ink-soft);}
+.class-card.active{border-color:var(--wine); background:var(--wine-tint);}
+
+table.phenol-table{width:100%; border-collapse:collapse; font-size:.88rem;}
+table.phenol-table th{text-align:left; padding:9px 8px; border-bottom:2px solid var(--ink); font-size:.75rem; letter-spacing:.02em; color:var(--ink-soft);}
+table.phenol-table td{padding:10px 8px; border-bottom:1px solid var(--line);}
+table.phenol-table tr{cursor:pointer;}
+table.phenol-table tr:hover td{background:var(--gold-tint);}
+table.phenol-table tr.active td{background:var(--wine-tint);}
+table.phenol-table code{font-weight:700; color:var(--gold-deep);}
+
+/* ---------- Mini map ---------- */
+.map-wrap{display:grid; grid-template-columns:1.35fr 1fr; gap:22px; align-items:start;}
+@media (max-width:860px){.map-wrap{grid-template-columns:1fr;}}
+.map-canvas{
+  position:relative; background:var(--paper); border:1px solid var(--line-strong); border-radius:10px;
+  min-height:520px; padding:20px;
+}
+.map-center{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  background:var(--ink); color:var(--paper); border-radius:50%;
+  width:118px; height:118px; display:flex; align-items:center; justify-content:center; text-align:center;
+  font-family:'Newsreader',serif; font-weight:600; font-size:1.05rem; padding:6px; z-index:3;
+}
+.map-node{
+  position:absolute; transform:translate(-50%,-50%);
+  background:var(--panel); border:1.5px solid var(--line-strong);
+  border-radius:20px; padding:8px 13px; font-size:.79rem; font-weight:600; cursor:pointer; z-index:3;
+  max-width:130px; text-align:center; line-height:1.2;
+  transition:border-color .15s ease, background .15s ease, transform .15s ease;
+}
+.map-node:hover{border-color:var(--gold); transform:translate(-50%,-50%) scale(1.04);}
+.map-node.active{background:var(--wine); color:#fff; border-color:var(--wine);}
+.map-lines{position:absolute; inset:0; width:100%; height:100%; z-index:1;}
+.map-lines line{stroke:var(--line-strong); stroke-width:1.5;}
+.map-detail{
+  border:1px solid var(--line-strong); background:var(--paper); border-radius:10px; padding:20px 22px;
+  min-height:300px; position:sticky; top:78px;
+}
+.map-detail h4{color:var(--wine); font-size:1.15rem; margin-bottom:10px;}
+.map-detail p{color:var(--ink-soft); font-size:.93rem;}
+.map-detail .placeholder{font-style:italic; opacity:.7;}
+@media (max-width:520px){ .map-canvas{min-height:0;} }
+
+/* mobile stacked map fallback */
+.map-list{display:none;}
+@media (max-width:600px){
+  .map-canvas{display:none;}
+  .map-list{display:grid; gap:8px;}
+  .map-list button{
+    text-align:left; border:1px solid var(--line-strong); background:var(--panel); border-radius:8px;
+    padding:11px 14px; font-size:.9rem; font-weight:600; cursor:pointer; color:var(--ink);
+  }
+  .map-list button.active{border-color:var(--wine); background:var(--wine-tint);}
+}
+
+/* ---------- Flash cards ---------- */
+.deck-controls{display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between; margin-bottom:18px;}
+.chip-row{display:flex; flex-wrap:wrap; gap:7px;}
+.chip{
+  border:1px solid var(--line-strong); background:var(--paper); color:var(--ink-soft);
+  padding:6px 12px; border-radius:20px; font-size:.78rem; font-weight:600; cursor:pointer;
+}
+.chip[aria-pressed="true"]{background:var(--leaf); border-color:var(--leaf); color:#fff;}
+.deck-count{font-size:.82rem; color:var(--ink-soft); font-weight:600;}
+
+.card-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px;}
+.flash{
+  perspective:1200px; height:320px; cursor:pointer;
+}
+.flash-inner{
+  position:relative; width:100%; height:100%; transition:transform .5s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;
+}
+.flash.flipped .flash-inner{transform:rotateY(180deg);}
+.flash-face{
+  position:absolute; inset:0; backface-visibility:hidden; border-radius:10px; padding:16px 17px;
+  display:flex; flex-direction:column; border:1px solid var(--line-strong);
+  overflow:hidden;
+}
+.flash-front{background:var(--paper);}
+.flash-back{background:var(--ink); color:var(--paper); transform:rotateY(180deg);}
+.flash-tag{font-size:.64rem; text-transform:uppercase; letter-spacing:.05em; font-weight:700; color:var(--wine); margin-bottom:8px; flex-shrink:0;}
+.flash-back .flash-tag{color:var(--gold);}
+.flash-q{font-family:'Newsreader',serif; font-size:.98rem; line-height:1.32; font-weight:600; overflow-y:auto; min-height:0; flex:1; word-wrap:break-word; padding-right:2px;}
+.flash-a{font-size:.83rem; line-height:1.42; color:var(--paper); overflow-y:auto; min-height:0; flex:1; word-wrap:break-word; padding-right:2px;}
+.flash-hint{margin-top:8px; font-size:.66rem; color:var(--ink-soft); opacity:.7; flex-shrink:0;}
+.flash-back .flash-hint{color:var(--paper); opacity:.6;}
+
+/* ---------- Quiz ---------- */
+.quiz-top{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;}
+.quiz-progress-track{background:var(--paper-2); height:7px; border-radius:6px; overflow:hidden; flex:1; min-width:140px;}
+.quiz-progress-fill{background:var(--gold); height:100%; width:0%; transition:width .3s ease;}
+.quiz-score{font-size:.85rem; font-weight:700; color:var(--wine);}
+.quiz-card{
+  border:1px solid var(--line-strong); background:var(--paper); border-radius:10px; padding:24px clamp(16px,4vw,30px);
+}
+.quiz-q-num{font-size:.72rem; font-weight:700; color:var(--ink-soft); letter-spacing:.03em; margin-bottom:8px;}
+.quiz-q{font-family:'Newsreader',serif; font-size:1.2rem; margin-bottom:18px; font-weight:600;}
+.quiz-options{display:grid; gap:10px; margin-bottom:18px;}
+.quiz-opt{
+  text-align:left; border:1.5px solid var(--line-strong); background:var(--panel); border-radius:8px;
+  padding:12px 14px; font-size:.92rem; cursor:pointer; display:flex; gap:10px; align-items:flex-start;
+}
+.quiz-opt .letter{
+  flex:0 0 auto; width:24px; height:24px; border-radius:50%; border:1.5px solid var(--line-strong);
+  display:flex; align-items:center; justify-content:center; font-size:.74rem; font-weight:700; color:var(--ink-soft);
+}
+.quiz-opt:hover:not(.locked){border-color:var(--gold);}
+.quiz-opt.correct{border-color:var(--leaf); background:var(--leaf-tint);}
+.quiz-opt.correct .letter{background:var(--leaf); border-color:var(--leaf); color:#fff;}
+.quiz-opt.wrong{border-color:var(--wine); background:var(--wine-tint);}
+.quiz-opt.wrong .letter{background:var(--wine); border-color:var(--wine); color:#fff;}
+.quiz-opt.dim{opacity:.55;}
+.quiz-nav{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;}
+.btn{
+  border:1px solid var(--ink); background:var(--ink); color:var(--paper); padding:10px 20px;
+  border-radius:8px; font-weight:600; font-size:.87rem; cursor:pointer;
+}
+.btn:disabled{opacity:.4; cursor:not-allowed;}
+.btn.ghost{background:transparent; color:var(--ink); border-color:var(--line-strong);}
+.quiz-feedback{font-size:.85rem; font-weight:600; min-height:1.2em; margin-bottom:8px;}
+.quiz-feedback.ok{color:var(--leaf);}
+.quiz-feedback.no{color:var(--wine);}
+
+.quiz-results{display:none;}
+.quiz-results.active{display:block;}
+.quiz-card.hide{display:none;}
+.result-hero{text-align:center; padding:20px 0 26px; border-bottom:1px solid var(--line); margin-bottom:20px;}
+.result-hero .big{font-family:'Newsreader',serif; font-size:3rem; color:var(--wine);}
+.result-review{display:grid; gap:10px;}
+.rr-row{border:1px solid var(--line-strong); border-radius:8px; padding:12px 14px; font-size:.85rem;}
+.rr-row .q{font-weight:600; margin-bottom:4px;}
+.rr-row.ok{border-left:4px solid var(--leaf);}
+.rr-row.no{border-left:4px solid var(--wine);}
+.rr-ans{color:var(--ink-soft); font-size:.82rem;}
+
+/* ---------- Footer ---------- */
+footer{
+  text-align:center; padding:26px 0 10px; color:var(--ink-soft); font-size:.78rem;
+}
+footer .div-leaf{opacity:.5; margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <header class="masthead">
+    <div class="masthead-text">
+      <div class="eyebrow">Pharmacognosy II · Revision Notebook</div>
+      <h1>Study Smart<br><em>Flavonoids</em></h1>
+      <p class="sub">Structure, biosynthesis and pharmacology of plant polyphenols — condensed for revision, with diagrams, flash cards and a self-test quiz.</p>
+    </div>
+    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="48" fill="none" stroke="#8C6A1E" stroke-width="1"/>
+      <path d="M50 78 C 30 70, 22 50, 32 30 C 40 45, 44 58, 50 78 Z" fill="#DCE6D2" stroke="#43613A" stroke-width="1.4"/>
+      <path d="M50 78 C 70 70, 78 50, 68 30 C 60 45, 56 58, 50 78 Z" fill="#F1E2BB" stroke="#B4872A" stroke-width="1.4"/>
+      <path d="M50 78 L50 30" stroke="#20291D" stroke-width="1.4"/>
+    </svg>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button role="tab" aria-selected="true" data-target="overview">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" stroke-linejoin="round"/><path d="M8 9h8M8 13h6"/></svg>
+      Overview
+    </button>
+    <button role="tab" aria-selected="false" data-target="diagrams">
+      <svg viewBox="0 0 24 24"><circle cx="7" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><circle cx="12" cy="17" r="3"/><path d="M9.5 9.8L10.3 15M14.5 9.8L13.7 15"/></svg>
+      Interactive Diagrams
+    </button>
+    <button role="tab" aria-selected="false" data-target="minimap">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="5" r="2"/><circle cx="20" cy="5" r="2"/><circle cx="4" cy="19" r="2"/><circle cx="20" cy="19" r="2"/><path d="M9.5 10.3L5.6 6.4M14.5 10.3L18.4 6.4M9.5 13.7L5.6 17.6M14.5 13.7L18.4 17.6"/></svg>
+      Mini Map
+    </button>
+    <button role="tab" aria-selected="false" data-target="flashcards">
+      <svg viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="14" rx="2"/><path d="M7 3h14v14"/></svg>
+      Flash Cards
+    </button>
+    <button role="tab" aria-selected="false" data-target="quiz">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.2 9.5a2.8 2.8 0 1 1 3.9 2.6c-.9.5-1.1.9-1.1 1.9"/><circle cx="12" cy="17" r=".4" fill="currentColor"/></svg>
+      Quiz Bank
+    </button>
+  </nav>
+
+  <main>
+
+    <!-- ============ OVERVIEW ============ -->
+    <section class="panel active" id="panel-overview">
+      <div class="section-head">
+        <h2>The essentials</h2>
+        <p>Not the full lecture — just the rules, numbers and relationships worth carrying into the exam.</p>
+      </div>
+
+      <div class="law-grid">
+        <div class="law-card">
+          <span class="tag">Definition</span>
+          <h3>What a flavonoid is</h3>
+          <p>An aromatic <b>secondary plant metabolite</b>, chemically a <b>polyphenolic compound</b>, built on <code>C6-C3-C6</code> — 15 carbons total.</p>
+        </div>
+        <div class="law-card">
+          <span class="tag">Core skeleton</span>
+          <h3>Rings A, B, C</h3>
+          <p>Two benzene rings (A and B) joined by a 3-carbon bridge, which commonly cyclizes with oxygen to form ring C (a pyran/pyrone).</p>
+        </div>
+        <div class="law-card">
+          <span class="tag">Glycosides</span>
+          <h3>Aglycone + glycone</h3>
+          <p><b>Aglycone</b> = pharmacological activity. <b>Glycone</b> (sugar) = no activity itself, but raises solubility and absorption.</p>
+        </div>
+        <div class="law-card">
+          <span class="tag">Precursor</span>
+          <h3>Chalcone</h3>
+          <p>The true biosynthetic precursor of all flavonoids. Its 3-carbon chain is <b>not</b> cyclized, so chalcones themselves are not "true" flavonoids.</p>
+        </div>
+        <div class="law-card">
+          <span class="tag">Substitution rule</span>
+          <h3>Where -OH sits</h3>
+          <p>Ring A: almost always <code>5-OH</code> and <code>7-OH</code>. Ring B: commonly <code>4′-OH</code>, or both <code>3′ &amp; 4′-OH</code>.</p>
+        </div>
+        <div class="law-card">
+          <span class="tag">Classification key</span>
+          <h3>Flavone vs isoflavone</h3>
+          <p>Ring B on <b>C-2</b> of ring C → flavan/flavone family. Ring B on <b>C-3</b> → iso-flavan/isoflavone family.</p>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h3>Major classes of plant phenols</h3>
+        <div class="kv-list">
+          <div class="row"><b>C6</b><span>Simple phenol — e.g. catechol</span></div>
+          <div class="row"><b>C6-C1</b><span>Phenolic acids — e.g. salicylic acid</span></div>
+          <div class="row"><b>C6-C3</b><span>Cinnamic acid derivatives</span></div>
+          <div class="row"><b>C6-C3-C6</b><span>Flavonoids</span></div>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h3>Sources &amp; role in the plant</h3>
+        <div class="kv-list">
+          <div class="row"><b>Top dietary sources</b><span>Fruits, tea, and soybean</span></div>
+          <div class="row"><b>Green / black tea</b><span>~25% flavonoids</span></div>
+          <div class="row"><b>Apple</b><span>Rich in quercetin</span></div>
+          <div class="row"><b>Citrus fruits</b><span>Rich in rutin and hesperidin</span></div>
+          <div class="row"><b>Plant functions</b><span>Pigmentation, UV screening, growth support, taste (bitter/sweet), defense</span></div>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h3>Biosynthesis in one line</h3>
+        <div class="pathway-mini">
+          <span class="node">Phenylalanine</span><span class="arrow">→</span>
+          <span class="node">Cinnamic acid</span><span class="arrow">→</span>
+          <span class="node">p-Coumaroyl-CoA</span><span class="arrow">+ 3 Malonyl-CoA →</span>
+          <span class="node">Chalcone</span><span class="arrow">→</span>
+          <span class="node">Flavanone</span><span class="arrow">→</span>
+          <span class="node">Flavone / Isoflavone / Flavonol / Anthocyanin</span>
+        </div>
+        <p style="margin-top:10px; font-size:.88rem; color:var(--ink-soft);">Mixed biosynthesis: ring B + the C3 bridge come from the <b>shikimic acid pathway</b>; ring A comes from the <b>acetate–mevalonate pathway</b> (3 × malonyl-CoA).</p>
+      </div>
+
+      <div class="overview-block">
+        <h3>Direct radical scavenging — the equation</h3>
+        <div class="equation">
+          Flavonoid(OH) + R• &nbsp;→&nbsp; Flavonoid(O•) + RH
+          <small>R• = a free radical · O• = an oxygen free radical</small>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h3>Structure–activity rules for radical scavenging</h3>
+        <div class="kv-list">
+          <div class="row"><b>Catechol on ring B</b><span>Great scavenging ability (ortho-dihydroxy)</span></div>
+          <div class="row"><b>Pyrogallol on ring B</b><span>Even higher activity, e.g. myricetin (trihydroxy)</span></div>
+          <div class="row"><b>C2–C3 double bond</b><span>Stabilizes the radical formed</span></div>
+          <div class="row"><b>4-oxo group</b><span>Boosts activity, especially with the C2–C3 bond</span></div>
+          <div class="row"><b>3-OH group</b><span>Extremely active in combination with the above</span></div>
+          <div class="row"><b>5-OH &amp; 7-OH</b><span>Add scavenging potential in some cases</span></div>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h3>Pharmacological actions at a glance</h3>
+        <div class="kv-list">
+          <div class="row"><b>Antioxidant</b><span>Direct radical scavenging + indirect iNOS inhibition, blocking peroxynitrite formation; iron chelation (quercetin)</span></div>
+          <div class="row"><b>Anti-inflammatory</b><span>Inhibit COX &amp; 5-LOX, reduce eicosanoid/prostaglandin synthesis, inhibit neutrophil degranulation</span></div>
+          <div class="row"><b>Antitumor</b><span>Inhibit cell proliferation; reduce heat-shock proteins; inhibit tyrosine kinases (quercetin); quercetin &amp; kaempferol block DNA/RNA/protein synthesis in tumor cells</span></div>
+          <div class="row"><b>Hepatoprotective</b><span>Silymarin, quercetin &amp; rutin raise hepatic glutathione, aiding detoxification and hepatocyte repair</span></div>
+          <div class="row"><b>Vascular</b><span>Rutin, hesperidin &amp; quercetin = "Vitamin P" — reduce capillary fragility</span></div>
+        </div>
+      </div>
+
+      <div class="overview-block">
+        <h3>Drugs &amp; examples to remember</h3>
+        <div class="kv-list">
+          <div class="row"><b>Silymarin</b><span>Flavanonolignan mixture (silybin, silychristin, silydianin) from milk thistle seeds — hepatoprotective</span></div>
+          <div class="row"><b>Quercetin</b><span>Antioxidant; inhibits iNOS, COX-2 and xanthine oxidase (gout)</span></div>
+          <div class="row"><b>Myricetin</b><span>Strong protection against carcinogenic mutation</span></div>
+          <div class="row"><b>Hesperidin</b><span>Citrus glycoside (aglycone: hesperetin) — "Vitamin P"; in Daflon 500 mg</span></div>
+          <div class="row"><b>Genistein</b><span>Isoflavonoid; acts as a phytoestrogen</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DIAGRAMS ============ -->
+    <section class="panel" id="panel-diagrams">
+      <div class="section-head">
+        <h2>Interactive Diagrams</h2>
+        <p>Click on any labelled point, box, card or row to see what it means.</p>
+      </div>
+
+      <div class="subtabs" role="tablist" aria-label="Diagram sets">
+        <button aria-selected="true" data-dtarget="d-skeleton">Core Skeleton</button>
+        <button aria-selected="false" data-dtarget="d-flow">Biosynthesis Flow</button>
+        <button aria-selected="false" data-dtarget="d-class">Classification Routes</button>
+        <button aria-selected="false" data-dtarget="d-phenol">Plant Phenol Classes</button>
+      </div>
+
+      <!-- Diagram 1: skeleton -->
+      <div class="diagram-panel active" id="d-skeleton">
+        <div class="diagram-stage">
+          <svg viewBox="0 0 480 300" role="img" aria-label="Flavonoid core skeleton with clickable positions">
+            <polygon class="skel-fill" points="200,140 165,120 130,140 130,190 165,210 200,190"/>
+            <polygon class="skel-fill" points="200,140 200,190 235,210 270,190 270,140 235,120"/>
+            <line class="skel-line" x1="270" y1="140" x2="300" y2="150"/>
+            <polygon class="skel-fill" points="300,150 300,110 335,90 370,110 370,150 335,170"/>
+            <text x="230" y="127" font-size="12" font-family="Inter,sans-serif" fill="var(--ink-soft)">O</text>
+            <line class="skel-dbl" x1="266" y1="146" x2="266" y2="184"/>
+            <line class="skel-dbl" x1="272" y1="146" x2="272" y2="184"/>
+            <text x="200" y="60" font-size="12" font-family="Inter,sans-serif" fill="var(--ink-soft)">A = ring A · C = ring C (pyran) · B = ring B</text>
+            <g class="hotspot" data-point="p5" transform="translate(165,210)"><circle r="9"/><text x="-3" y="4">5</text></g>
+            <g class="hotspot" data-point="p7" transform="translate(130,140)"><circle r="9"/><text x="-3" y="4">7</text></g>
+            <g class="hotspot" data-point="p3" transform="translate(255,205)"><circle r="9"/><text x="-3" y="4">3</text></g>
+            <g class="hotspot" data-point="p4" transform="translate(235,210)"><circle r="9"/><text x="-3" y="4">4</text></g>
+            <g class="hotspot" data-point="c2c3" transform="translate(269,165)"><circle r="9"/><text x="-6" y="4" font-size="9">2-3</text></g>
+            <g class="hotspot" data-point="p3p4" transform="translate(335,90)"><circle r="9"/><text x="-9" y="4" font-size="9">3′4′</text></g>
+            <g class="hotspot" data-point="pO" transform="translate(235,120)"><circle r="9"/><text x="-3" y="4">O</text></g>
+          </svg>
+        </div>
+        <div class="info-card" id="skeleton-info">
+          <p class="placeholder">Tap a numbered point on the skeleton to read what happens there.</p>
+        </div>
+      </div>
+
+      <!-- Diagram 2: biosynthesis flow -->
+      <div class="diagram-panel" id="d-flow">
+        <div class="diagram-stage">
+          <div class="flow-row">
+            <div class="flow-box" data-flow="phe">Phenylalanine</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box" data-flow="cinn">Cinnamic acid</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box" data-flow="coum">p-Coumaric acid</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-box" data-flow="coa">p-Coumaroyl-CoA</div>
+            <div class="flow-arrow">+</div>
+            <div class="flow-box" data-flow="malonyl">3 × Malonyl-CoA</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box" data-flow="chalcone">Chalcone</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-arrow" style="padding-left:0;">→</div>
+            <div class="flow-box" data-flow="flavanone">Flavanone</div>
+          </div>
+          <div class="flow-branch">
+            <div class="flow-row">
+              <div class="flow-arrow" style="padding-left:0;">→</div>
+              <div class="flow-box" data-flow="flavone">Flavone</div>
+              <div class="flow-arrow">/</div>
+              <div class="flow-box" data-flow="isoflavone">Isoflavone</div>
+            </div>
+            <div class="flow-row">
+              <div class="flow-arrow" style="padding-left:0;">→</div>
+              <div class="flow-box" data-flow="dihydro">Dihydroflavonol</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box" data-flow="flavonol">Flavonol</div>
+            </div>
+            <div class="flow-row">
+              <div class="flow-arrow" style="padding-left:0;">→</div>
+              <div class="flow-box" data-flow="antho">Anthocyanins &amp; tannins</div>
+            </div>
+          </div>
+        </div>
+        <div class="info-card" id="flow-info">
+          <p class="placeholder">Tap a box in the pathway to see the step explained.</p>
+        </div>
+      </div>
+
+      <!-- Diagram 3: classification routes -->
+      <div class="diagram-panel" id="d-class">
+        <div class="diagram-stage">
+          <p style="font-size:.82rem; color:var(--ink-soft); margin-bottom:10px;">Grouped by degree of unsaturation / oxidation of the 3-carbon segment, and by where ring B attaches.</p>
+          <div class="class-cards" id="class-cards"></div>
+        </div>
+        <div class="info-card" id="class-info">
+          <p class="placeholder">Tap a class card to see its defining feature.</p>
+        </div>
+      </div>
+
+      <!-- Diagram 4: phenol classes table -->
+      <div class="diagram-panel" id="d-phenol">
+        <div class="diagram-stage">
+          <table class="phenol-table" id="phenol-table">
+            <thead><tr><th>Skeleton</th><th>Class</th><th>Example</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="info-card" id="phenol-info">
+          <p class="placeholder">Tap a row to compare its chain length with flavonoids.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MINI MAP ============ -->
+    <section class="panel" id="panel-minimap">
+      <div class="section-head">
+        <h2>Mini Map</h2>
+        <p>Click a topic to open its notes in the panel beside it.</p>
+      </div>
+      <div class="map-wrap">
+        <div class="map-canvas" id="map-canvas">
+          <svg class="map-lines" id="map-lines"></svg>
+          <div class="map-center">Flavonoids</div>
+        </div>
+        <div class="map-list" id="map-list"></div>
+        <div class="map-detail" id="map-detail">
+          <p class="placeholder">Select a topic on the map to see its notes here.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FLASH CARDS ============ -->
+    <section class="panel" id="panel-flashcards">
+      <div class="section-head">
+        <h2>Flash Cards</h2>
+        <p>Tap a card to flip it. Filter by topic if you want to drill one area.</p>
+      </div>
+      <div class="deck-controls">
+        <div class="chip-row" id="level-row-flash"></div>
+        <div class="deck-count" id="deck-count"></div>
+      </div>
+      <div class="deck-controls">
+        <div class="chip-row" id="chip-row"></div>
+      </div>
+      <div class="card-grid" id="card-grid"></div>
+    </section>
+
+    <!-- ============ QUIZ BANK ============ -->
+    <section class="panel" id="panel-quiz">
+      <div class="section-head">
+        <h2>Quiz Bank</h2>
+        <p>Answer options are shuffled each time you start the quiz.</p>
+      </div>
+
+      <div class="deck-controls">
+        <div class="chip-row" id="level-row-quiz"></div>
+      </div>
+
+      <div class="quiz-top">
+        <div class="quiz-progress-track"><div class="quiz-progress-fill" id="quiz-progress"></div></div>
+        <div class="quiz-score" id="quiz-score">Score: 0 / 0</div>
+      </div>
+
+      <div class="quiz-card" id="quiz-card">
+        <div class="quiz-q-num" id="quiz-qnum"></div>
+        <div class="quiz-q" id="quiz-q"></div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <div class="quiz-nav">
+          <button class="btn ghost" id="quiz-restart">Restart quiz</button>
+          <button class="btn" id="quiz-next" disabled>Next question</button>
+        </div>
+      </div>
+
+      <div class="quiz-results" id="quiz-results">
+        <div class="result-hero">
+          <div class="big" id="result-score">0 / 0</div>
+          <p>final score</p>
+          <button class="btn" id="quiz-retry">Try again with a fresh shuffle</button>
+        </div>
+        <div class="result-review" id="result-review"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="div-leaf">❧</div>
+    <div>© <span id="year"></span> Anmar Taha. All rights reserved.</div>
+  </footer>
+
+</div>
+
+<script>
+/* =========================================================
+   TAB NAVIGATION
+========================================================= */
+const tabs = document.querySelectorAll('nav.tabs button');
+const panels = document.querySelectorAll('.panel');
+tabs.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    tabs.forEach(b=>b.setAttribute('aria-selected','false'));
+    btn.setAttribute('aria-selected','true');
+    panels.forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+btn.dataset.target).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* =========================================================
+   DIAGRAM SUBTABS
+========================================================= */
+const dtabs = document.querySelectorAll('.subtabs button');
+const dpanels = document.querySelectorAll('.diagram-panel');
+dtabs.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    dtabs.forEach(b=>b.setAttribute('aria-selected','false'));
+    btn.setAttribute('aria-selected','true');
+    dpanels.forEach(p=>p.classList.remove('active'));
+    document.getElementById(btn.dataset.dtarget).classList.add('active');
+  });
+});
+
+/* ---- Diagram 1: skeleton hotspots ---- */
+const skeletonInfo = {
+  p5: {t:"5-OH (ring A)", d:"One of the two hydroxyls almost always present on ring A. Together with 7-OH it defines the standard oxygenation pattern of flavonoids, and it can add extra radical-scavenging potential."},
+  p7: {t:"7-OH (ring A)", d:"The second hydroxyl nearly always found on ring A, alongside 5-OH. This pattern recurs across flavones, flavonols and flavanones."},
+  p3: {t:"3-OH (ring C)", d:"Generates an extremely active radical scavenger. Combined with the C2–C3 double bond and the 4-oxo group, it forms the strongest antioxidant combination on top of a catechol/pyrogallol ring B."},
+  p4: {t:"4-oxo group (ring C)", d:"A keto group at C-4. Especially when paired with the C2–C3 double bond, it increases scavenger activity — this is the carbonyl that turns a flavan into a flavone/flavonol/flavanone type skeleton."},
+  c2c3: {t:"C2–C3 double bond (ring C)", d:"Increases radical-scavenging activity because it stabilizes the radical produced after a flavonoid donates a hydrogen. Central to distinguishing flavones/flavonols from flavanones (saturated) and flavans."},
+  p3p4: {t:"3′,4′ positions (ring B)", d:"Ring B commonly carries -OH or -OCH₃ at the 4′ position, or at both 3′ and 4′. A 3′,4′-dihydroxy (catechol) pattern here confers great radical-scavenging ability; a 3′,4′,5′-trihydroxy (pyrogallol) pattern, as in myricetin, is even more active."},
+  pO: {t:"Ring-C oxygen", d:"The 3-carbon bridge between rings A and B commonly cyclizes through this oxygen, forming the pyran (flavan) or pyrone (flavone) ring that defines the true flavonoid skeleton — as opposed to chalcones, which stay uncyclized."}
+};
+document.querySelectorAll('#d-skeleton .hotspot').forEach(g=>{
+  g.addEventListener('click', ()=>{
+    document.querySelectorAll('#d-skeleton .hotspot').forEach(x=>x.classList.remove('active'));
+    g.classList.add('active');
+    const info = skeletonInfo[g.dataset.point];
+    document.getElementById('skeleton-info').innerHTML = `<h4>${info.t}</h4><p>${info.d}</p>`;
+  });
+});
+
+/* ---- Diagram 2: biosynthesis flow ---- */
+const flowInfo = {
+  phe: {t:"Phenylalanine", d:"The amino acid that starts the shikimic-acid branch of flavonoid biosynthesis."},
+  cinn: {t:"Cinnamic acid", d:"Formed from phenylalanine by deamination."},
+  coum: {t:"p-Coumaric acid", d:"Formed by hydroxylation of cinnamic acid at the para position (4-coumaric acid)."},
+  coa: {t:"p-Coumaroyl-CoA", d:"The activated (acylated) thioester form of p-coumaric acid, ready to condense with malonyl-CoA units."},
+  malonyl: {t:"3 × Malonyl-CoA", d:"Three acetate units, supplied via the acetate–mevalonate pathway, that build ring A of the flavonoid."},
+  chalcone: {t:"Chalcone", d:"The true backbone of all flavonoids, formed by combining p-coumaroyl-CoA with three malonyl-CoA units. Its 3-carbon chain is not yet cyclized, so it is not itself a 'true' flavonoid."},
+  flavanone: {t:"Flavanone", d:"Formed by ring closure (cyclization) of chalcone — the first fully cyclized flavonoid skeleton."},
+  flavone: {t:"Flavone", d:"Formed from flavanone by introducing the C2–C3 double bond in ring C."},
+  isoflavone: {t:"Isoflavone", d:"Formed from flavanone by migration of ring B from C-2 to C-3 of ring C."},
+  dihydro: {t:"Dihydroflavonol", d:"An intermediate formed from flavanone by hydroxylation at C-3, en route to flavonols, anthocyanins and tannins."},
+  flavonol: {t:"Flavonol", d:"Formed from dihydroflavonol; carries both the C2–C3 double bond and a 3-OH group, e.g. quercetin, myricetin, kaempferol."},
+  antho: {t:"Anthocyanins & tannins", d:"Further reduction/condensation products of dihydroflavonols; anthocyanins are the pigmented, often red-purple, flavonoid class."}
+};
+document.querySelectorAll('#d-flow .flow-box').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.querySelectorAll('#d-flow .flow-box').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const info = flowInfo[b.dataset.flow];
+    document.getElementById('flow-info').innerHTML = `<h4>${info.t}</h4><p>${info.d}</p>`;
+  });
+});
+
+/* ---- Diagram 3: classification cards ---- */
+const classData = [
+  {n:"Flavan", tag:"Fully saturated ring C", d:"The saturated benzopyran parent; ring C has no C2–C3 double bond and no 4-oxo group."},
+  {n:"Flavanone", tag:"4-oxo, saturated C2–C3", d:"Has the 4-oxo group but ring C is otherwise saturated (no C2–C3 double bond)."},
+  {n:"Flavone", tag:"4-oxo + C2=C3", d:"Adds the C2–C3 double bond to the flavanone skeleton — ring B attached at C-2."},
+  {n:"Isoflavone", tag:"Ring B at C-3", d:"Same oxidation level as flavone, but ring B is attached at C-3 instead of C-2."},
+  {n:"Flavanonol", tag:"4-oxo + 3-OH", d:"A flavanone with an added 3-OH group (dihydroflavonol)."},
+  {n:"Flavonol", tag:"4-oxo + C2=C3 + 3-OH", d:"A flavone with an added 3-OH group — the combination linked to the strongest radical scavenging."},
+  {n:"Anthocyanidin", tag:"Flavylium cation", d:"Formed from flavonols/dihydroflavonols; carries a positively charged oxygen in ring C and is responsible for red/purple/blue plant pigments."},
+  {n:"Chalcone", tag:"No ring C at all", d:"The open-chain precursor — the 3-carbon bridge never cyclizes, so it is not a true flavonoid."}
+];
+const classCardsEl = document.getElementById('class-cards');
+classData.forEach((c,i)=>{
+  const el = document.createElement('div');
+  el.className = 'class-card';
+  el.innerHTML = `<b>${c.n}</b><span>${c.tag}</span>`;
+  el.addEventListener('click', ()=>{
+    document.querySelectorAll('.class-card').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('class-info').innerHTML = `<h4>${c.n}</h4><p>${c.d}</p>`;
+  });
+  classCardsEl.appendChild(el);
+});
+
+/* ---- Diagram 4: phenol classes table ---- */
+const phenolData = [
+  {sk:"C6", cl:"Simple phenol", ex:"Catechol", d:"Just the benzene ring — no side chain at all. The shortest of the plant phenol skeletons."},
+  {sk:"C6-C1", cl:"Phenolic acid", ex:"Salicylic acid", d:"One extra carbon (a carboxyl) attached to the ring — one-third the bridge length of a flavonoid's C3 unit."},
+  {sk:"C6-C3", cl:"Cinnamic acid", ex:"Cinnamic acid", d:"A 3-carbon side chain on one ring — this is exactly the C3 bridge that, with a second benzene ring, becomes a flavonoid."},
+  {sk:"C6-C3-C6", cl:"Flavonoid", ex:"Flavone / quercetin / etc.", d:"Two benzene rings joined by the C3 bridge — the largest and most structurally elaborate of the four classes."}
+];
+const phenolBody = document.querySelector('#phenol-table tbody');
+phenolData.forEach(row=>{
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td><code>${row.sk}</code></td><td>${row.cl}</td><td>${row.ex}</td>`;
+  tr.addEventListener('click', ()=>{
+    document.querySelectorAll('#phenol-table tr').forEach(x=>x.classList.remove('active'));
+    tr.classList.add('active');
+    document.getElementById('phenol-info').innerHTML = `<h4>${row.cl} — ${row.sk}</h4><p>${row.d}</p>`;
+  });
+  phenolBody.appendChild(tr);
+});
+
+/* =========================================================
+   MINI MAP
+========================================================= */
+const mapTopics = [
+  {id:"structure", label:"Definition & Structure", angle:-100,
+   text:"Flavonoids are aromatic secondary plant metabolites, chemically polyphenolic compounds, built on a C6-C3-C6, 15-carbon skeleton: two benzene rings (A and B) joined by a 3-carbon bridge that commonly cyclizes with oxygen into ring C. The flavan (benzopyran) and flavone (benzopyrone) nuclei are the two core parent structures."},
+  {id:"glycosides", label:"Glycosides", angle:-55,
+   text:"Flavonoids occur free (aglycone) or bound to sugar (glycoside). The aglycone carries the pharmacological / therapeutic activity; the glycone (sugar) part has no activity of its own but increases the solubility and absorption of the aglycone in the body. Sugars can attach at any available hydroxyl group."},
+  {id:"phenolclasses", label:"Plant Phenol Classes", angle:-10,
+   text:"Flavonoids are one of four major classes of plant phenols, ranked by chain length: C6 (simple phenols, e.g. catechol), C6-C1 (phenolic acids, e.g. salicylic acid), C6-C3 (cinnamic acid), and C6-C3-C6 (flavonoids)."},
+  {id:"sources", label:"Sources", angle:35,
+   text:"The most important dietary sources are fruits, tea, and soybean. Green and black tea contain about 25% flavonoids. Apples are rich in quercetin; citrus fruits are rich in rutin and hesperidin."},
+  {id:"function", label:"Function in Plants", angle:80,
+   text:"Flavonoids give plants much of their color (pigment characteristics), support healthy tissue growth and proliferation, screen the plant from UV radiation by absorbing UV light, influence the taste of food (bitter or sweet), and act as a defense mechanism."},
+  {id:"classbasis", label:"Classification Basis", angle:125,
+   text:"Flavonoid classes are differentiated by three things: the degree of unsaturation (presence/absence of a double bond) in ring C, the degree of oxidation of the 3-carbon segment, and the position of ring B substitution (C-2 for flavan/flavone types, C-3 for iso-flavan/isoflavone types). Chalcone, with no cyclized ring C, is the basic precursor but not a true flavonoid."},
+  {id:"biosynthesis", label:"Biosynthesis", angle:170,
+   text:"Flavonoids have mixed biosynthesis. The shikimic acid pathway converts phenylalanine → cinnamic acid (deamination) → p-coumaric acid (hydroxylation) → p-coumaroyl-CoA, which contributes ring B and the C3 bridge. This combines with three malonyl-CoA units from the acetate–mevalonate pathway (contributing ring A) to form chalcone, the true flavonoid backbone. Ring closure of chalcone gives flavanones, which lead on to flavones, isoflavones, dihydroflavonols, flavonols, anthocyanins and tannins."},
+  {id:"antioxidant", label:"Antioxidant Action", angle:215,
+   text:"Direct scavenging: Flavonoid(OH) + R• → Flavonoid(O•) + RH, using the high reactivity of the flavonoid's hydroxyl groups. Indirect action: flavonoids inhibit inducible nitric oxide synthase (iNOS), reducing nitric-oxide radical formation and, in turn, the highly damaging peroxynitrite that forms when NO• reacts with oxygen radicals. Specific flavonoids (notably quercetin) also chelate iron, limiting iron-driven lipid peroxidation."},
+  {id:"sar", label:"Structure–Activity Rules", angle:260,
+   text:"The best radical scavengers combine: a catechol (or even better, pyrogallol, as in myricetin) group on ring B; a C2–C3 double bond in ring C, which stabilizes the radical formed; a 4-oxo group, especially alongside the C2–C3 bond; and a 3-OH group — the C2–C3 double bond plus 4-oxo plus 3-OH is considered the strongest combination. 5-OH and 7-OH on ring A can add further potential."},
+  {id:"pharm", label:"Other Pharmacological Actions", angle:305,
+   text:"Anti-inflammatory: inhibit cyclooxygenase and 5-lipoxygenase, reducing arachidonic acid release and eicosanoid/prostaglandin formation, and inhibit neutrophil degranulation. Antitumor: inhibit cell proliferation, reduce heat-shock proteins, inhibit tyrosine kinases (quercetin); quercetin and kaempferol inhibit DNA, RNA and protein synthesis in tumor cells. Hepatoprotective: silymarin, quercetin and rutin raise hepatic glutathione, aiding detoxification and hepatocyte repair. Vascular: rutin, hesperidin and quercetin ('Vitamin P') reduce capillary fragility."},
+  {id:"drugs", label:"Drugs & Examples", angle:350,
+   text:"Silymarin — a flavanonolignan mixture (silybin, silychristin, silydianin) from milk thistle (Silybum marianum) seeds; hepatoprotective, lowers cholesterol, reduces radiation/chemotherapy cell damage. Quercetin — antioxidant, inhibits iNOS, COX-2 and xanthine oxidase (gout). Myricetin — protects cells from carcinogenic mutation. Hesperidin — citrus glycoside (aglycone hesperetin), 'Vitamin P', found in Daflon 500 mg for veno-lymphatic insufficiency and hemorrhoidal attacks. Genistein — an isoflavonoid with phytoestrogenic activity."}
+];
+
+function layoutMap(){
+  const canvas = document.getElementById('map-canvas');
+  if(canvas.offsetWidth === 0) return;
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  const cx = w/2, cy = h/2;
+  const rx = Math.max(w*0.36, 120), ry = Math.max(h*0.36, 150);
+  const svg = document.getElementById('map-lines');
+  svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  svg.innerHTML = '';
+  document.querySelectorAll('.map-node').forEach(n=>n.remove());
+
+  mapTopics.forEach(topic=>{
+    const rad = topic.angle * Math.PI/180;
+    const x = cx + rx*Math.cos(rad);
+    const y = cy + ry*Math.sin(rad);
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+    line.setAttribute('x2', x); line.setAttribute('y2', y);
+    svg.appendChild(line);
+
+    const node = document.createElement('div');
+    node.className = 'map-node';
+    node.style.left = x+'px';
+    node.style.top = y+'px';
+    node.textContent = topic.label;
+    node.dataset.id = topic.id;
+    node.addEventListener('click', ()=>selectMapTopic(topic.id));
+    canvas.appendChild(node);
+  });
+}
+
+function selectMapTopic(id){
+  const topic = mapTopics.find(t=>t.id===id);
+  document.querySelectorAll('.map-node, .map-list button').forEach(n=>{
+    n.classList.toggle('active', n.dataset.id === id);
+  });
+  document.getElementById('map-detail').innerHTML = `<h4>${topic.label}</h4><p>${topic.text}</p>`;
+}
+
+const mapListEl = document.getElementById('map-list');
+mapTopics.forEach(topic=>{
+  const b = document.createElement('button');
+  b.textContent = topic.label;
+  b.dataset.id = topic.id;
+  b.addEventListener('click', ()=>selectMapTopic(topic.id));
+  mapListEl.appendChild(b);
+});
+
+window.addEventListener('resize', layoutMap);
+document.querySelector('[data-target="minimap"]').addEventListener('click', ()=>setTimeout(layoutMap,30));
+setTimeout(layoutMap, 50);
+
+/* =========================================================
+   FLASH CARDS
+========================================================= */
+const flashcards = [
+  {cat:"structure", level:1, q:"Chemically, what type of compounds are flavonoids?", a:"Polyphenolic compounds."},
+  {cat:"structure", level:1, q:"Flavonoids constitute one of the most characteristic classes of compounds in which organisms?", a:"Higher plants."},
+  {cat:"structure", level:1, q:"How many carbon atoms make up the basic flavonoid skeleton?", a:"15 carbon atoms."},
+  {cat:"structure", level:1, q:"What is the carbon-skeleton arrangement of the flavonoid nucleus?", a:"C6-C3-C6."},
+  {cat:"structure", level:1, q:"What two ring systems are joined by the three-carbon chain in flavonoids?", a:"Two benzene (phenyl) rings."},
+  {cat:"structure", level:1, q:"What element commonly cyclizes the 3-carbon bridge between the two phenyl rings?", a:"Oxygen."},
+  {cat:"structure", level:1, q:"What class of plant metabolites are flavonoids classified as?", a:"Aromatic secondary plant metabolites."},
+  {cat:"structure", level:1, q:"In a flavonoid glycoside, what are the two component parts called?", a:"Aglycone and glycone."},
+  {cat:"structure", level:1, q:"Which part of a flavonoid glycoside is responsible for its pharmacological/therapeutic effect?", a:"The aglycone."},
+  {cat:"structure", level:2, q:"What is the bicyclic ring system formed by rings A and C in a flavan called?", a:"Benzo-pyran."},
+  {cat:"structure", level:2, q:"What is the bicyclic ring system formed by rings A and C in a flavone called?", a:"Benzo-pyrone (benzo-γ-pyrone)."},
+  {cat:"structure", level:2, q:"What role does the glycone (sugar) portion play in a flavonoid glycoside, given it has no pharmacological activity of its own?", a:"It increases the solubility and absorption of the aglycone in the human body."},
+  {cat:"structure", level:2, q:"On which positions of ring A are hydroxyl groups nearly always found in flavonoids?", a:"Positions 5 and 7."},
+  {cat:"structure", level:2, q:"At which position(s) of ring B do flavonoids commonly carry hydroxyl or alkoxyl substituents?", a:"Position 4′, or both 3′ and 4′."},
+  {cat:"structure", level:2, q:"On which part of the flavonoid molecule can the sugar of a glycoside attach?", a:"Any of the available hydroxyl groups."},
+  {cat:"structure", level:2, q:"To which broader class of plant compounds do flavonoids belong, explaining their antioxidant activity?", a:"Plant phenolics."},
+  {cat:"structure", level:3, q:"Structurally, what distinguishes a flavan-type nucleus from a flavone-type nucleus?", a:"A flavone has a 4-oxo (carbonyl) group at C-4 and typically a C2–C3 double bond in ring C, whereas a flavan is fully saturated at ring C and lacks both features."},
+  {cat:"structure", level:3, q:"Why is the three-carbon bridge said to be 'commonly cyclized with oxygen,' and what does this cyclization generate?", a:"An oxygen from ring A closes onto the propane bridge to form the oxygen-containing pyran/pyrone ring (ring C), converting the open chalcone-type chain into the tricyclic flavonoid skeleton."},
+  {cat:"structure", level:3, q:"Two flavonoids share identical ring-A/ring-C substitution but differ only in whether a sugar is attached. Which is expected to show the stronger direct pharmacological effect, and why?", a:"The free aglycone, because the glycone (sugar) itself carries no pharmacological activity — it only improves solubility/absorption — so the unconjugated aglycone exerts the intrinsic therapeutic effect."},
+  {cat:"structure", level:3, q:"Why might pharmacologically identical aglycones show different oral bioavailability when isolated as different glycosides?", a:"Because the attached sugar does not change intrinsic activity but changes solubility and absorption efficiency, and this can vary with which hydroxyl carries the sugar and which sugar is used."},
+  {cat:"structure", level:3, q:"Why does the flavonoid class occupy the most complex row of the plant-phenol table (C6, C6-C1, C6-C3, C6-C3-C6)?", a:"Because flavonoids have two aromatic C6 rings connected by a C3 unit, making them structurally more elaborate than simple phenols (C6), phenolic acids (C6-C1) and cinnamic-acid derivatives (C6-C3), which contain only one aromatic ring."},
+  {cat:"structure", level:3, q:"Why are flavonoids termed 'polyphenolic' rather than simply 'phenolic'?", a:"Because their C6-C3-C6 skeleton carries multiple hydroxyl-substituted aromatic rings (A and B), giving several phenolic -OH groups per molecule rather than just one."},
+  {cat:"classes", level:1, q:"According to which three criteria are flavonoid classes chemically differentiated?", a:"Degree of unsaturation in ring C, degree of oxidation of the three-carbon segment, and position of ring B phenyl substitution."},
+  {cat:"classes", level:1, q:"At which ring-C carbon is ring B attached in normal flavan/flavone-type compounds?", a:"Carbon 2."},
+  {cat:"classes", level:1, q:"At which ring-C carbon is ring B attached in isoflavan/isoflavone-type compounds?", a:"Carbon 3."},
+  {cat:"classes", level:1, q:"What is the basic skeleton, with an example, of a simple phenol?", a:"C6, e.g. catechol."},
+  {cat:"classes", level:1, q:"What is the basic skeleton, with an example, of a phenolic acid?", a:"C6-C1, e.g. salicylic acid."},
+  {cat:"classes", level:1, q:"What is the basic skeleton of cinnamic-acid type compounds?", a:"C6-C3."},
+  {cat:"classes", level:1, q:"What is the basic skeleton of flavonoids among the major classes of plant phenols?", a:"C6-C3-C6."},
+  {cat:"classes", level:1, q:"Why are chalcones not considered true flavonoid compounds?", a:"Their three-carbon chain does not cyclize, so they have no central pyrone ring."},
+  {cat:"classes", level:1, q:"What is chalcone's biosynthetic importance to flavonoids?", a:"It is the basic precursor from which all flavonoids are derived."},
+  {cat:"classes", level:2, q:"Which flavonoid subclass is produced when a flavanone gains a C2–C3 double bond in ring C?", a:"Flavone."},
+  {cat:"classes", level:2, q:"Which flavonoid subclass is produced when a flavanone gains a 3-hydroxyl group but keeps ring C saturated?", a:"Flavanonol (dihydroflavonol)."},
+  {cat:"classes", level:2, q:"Which subclass results when a flavanonol also gains the C2–C3 double bond?", a:"Flavonol."},
+  {cat:"classes", level:2, q:"How do isoflavones relate to flavones in terms of oxidation state of ring C?", a:"They share the same oxidation level (4-oxo group plus C2–C3 double bond); they differ only in the attachment point of ring B (C-3 instead of C-2)."},
+  {cat:"classes", level:2, q:"What functional feature distinguishes a flavanone from a flavan?", a:"A flavanone carries a 4-oxo (ketone) group at C-4 that a flavan lacks."},
+  {cat:"classes", level:2, q:"What functional feature distinguishes a flavanol (catechin-type) from a flavan?", a:"A flavanol carries a 3-hydroxyl group on ring C that a flavan lacks."},
+  {cat:"classes", level:2, q:"From which flavonoid subclass are anthocyanidins biogenetically derived, and what distinctive ionic feature do they possess?", a:"They arise from the flavonol branch and carry a positively charged (flavylium/oxonium) oxygen in ring C."},
+  {cat:"classes", level:3, q:"A compound has a 4-oxo group and a saturated ring C, but no hydroxyl at C-3. What subclass is it, and how would adding a 3-OH reclassify it?", a:"It is a flavanone; adding a 3-OH while ring C stays saturated converts it into a flavanonol (dihydroflavonol)."},
+  {cat:"classes", level:3, q:"Silymarin's constituents are described as 'flavanonol' compounds. What two ring-C features would you expect in silybin, based on the oxidation classification?", a:"A 4-oxo group at C-4 and a hydroxyl at C-3, with ring C otherwise saturated — the dihydroflavonol pattern, further fused to an extra dioxane ring from the additional phenylpropanoid unit."},
+  {cat:"classes", level:3, q:"Using the 'degree of oxidation of the 3-carbon segment' criterion, explain why a flavonol is more oxidized than a flavanone.", a:"A flavanone has only the 4-oxo group with a saturated C2–C3 bond, while a flavonol carries the 4-oxo group, the C2–C3 double bond, and a 3-OH — a higher degree of oxidation/unsaturation of the same three-carbon segment."},
+  {cat:"classes", level:3, q:"If a C6-C3-C6 natural product has an uncyclized 3-carbon bridge, which classification rule excludes it from 'true flavonoid' status, and what is it called instead?", a:"The rule requiring a cyclized central pyrone/pyran ring (ring C); such an open-chain compound is a chalcone, the biosynthetic precursor rather than a true flavonoid."},
+  {cat:"classes", level:3, q:"Two flavonoids differ only in ring-B attachment (C-2 vs C-3). What are they called, and why does this matter pharmacologically, as illustrated by genistein?", a:"A flavone/isoflavone pair; the shift changes the molecule's 3-D shape and receptor recognition — isoflavones like genistein can then mimic estrogen (phytoestrogen activity), a property ordinary flavones lack."},
+  {cat:"sources", level:1, q:"In which type of material are flavonoids found in most abundance?", a:"Most plant material."},
+  {cat:"sources", level:1, q:"What are the three most important dietary sources of flavonoids mentioned?", a:"Fruits, tea, and soybean."},
+  {cat:"sources", level:1, q:"Approximately what percentage of green and black tea consists of flavonoids?", a:"About 25%."},
+  {cat:"sources", level:1, q:"Which flavonoid is apple especially rich in?", a:"Quercetin."},
+  {cat:"sources", level:1, q:"Which two flavonoid glycosides are citrus fruits especially rich in?", a:"Rutin and hesperidin."},
+  {cat:"sources", level:1, q:"What plant characteristic do flavonoids contribute to as the widest group of natural pigments?", a:"The color of plants (pigment characteristics)."},
+  {cat:"sources", level:1, q:"Besides pigmentation, name one other stated function of flavonoids in plants.", a:"Screening plants from ultraviolet radiation (also: supporting tissue growth, affecting taste, or defense)."},
+  {cat:"sources", level:1, q:"How can flavonoids affect the taste of food?", a:"They can make it taste bitter or sweet."},
+  {cat:"sources", level:2, q:"How do flavonoids protect plants from ultraviolet radiation?", a:"The colors/pigments they produce absorb UV light, screening the underlying plant tissue."},
+  {cat:"sources", level:2, q:"What growth-related role do flavonoids serve in plant tissues?", a:"They support healthy growth and proliferation of plant tissues."},
+  {cat:"sources", level:2, q:"What ecological/protective role, besides pigmentation and UV-screening, do flavonoids play for the plant?", a:"A defense mechanism."},
+  {cat:"sources", level:2, q:"Which flavonoid subclass, shown in the sources diagram, is particularly linked to legume/soy-type foods?", a:"Isoflavonoids."},
+  {cat:"sources", level:2, q:"Which flavonoid subclass is anthocyanin-rich foods such as berries, plums, and grapes associated with?", a:"Anthocyanins."},
+  {cat:"sources", level:2, q:"Summarize the five distinct roles flavonoids play within the plant itself.", a:"Pigmentation/color, UV screening, supporting healthy tissue growth and proliferation, contributing to taste (bitter or sweet), and serving as a defense mechanism."},
+  {cat:"sources", level:2, q:"Which flavonoid subclass, alongside flavanone, is associated with citrus/grape-type fruit sources in the sources diagram?", a:"Flavone."},
+  {cat:"sources", level:3, q:"Explain the mechanistic link between a flavonoid's role as a plant pigment and its role in UV protection.", a:"The same chromophore-bearing conjugated structure that absorbs visible light (producing color) also absorbs UV wavelengths, so the pigment simultaneously colors the plant and shields its tissues from UV-induced damage."},
+  {cat:"sources", level:3, q:"Why would a diet lacking fruit, tea, and soybean provide comparatively little dietary flavonoid intake?", a:"Because these three are specifically named as the most important dietary sources of flavonoids; omitting all three removes the principal contributors of both flavonoid quantity and structural diversity."},
+  {cat:"sources", level:3, q:"Why might a plant grown under intense sunlight be expected to biosynthesize more flavonoids than a shaded plant?", a:"Because flavonoid pigments provide UV-screening photoprotection, so greater light/UV stress would drive higher flavonoid biosynthesis."},
+  {cat:"sources", level:3, q:"How does the bitter-taste function of some flavonoids connect to their role as a plant defense mechanism?", a:"An unpalatable, bitter taste caused by flavonoids can deter herbivores from feeding, directly linking the taste-modifying function to the defensive function."},
+  {cat:"sources", level:3, q:"Apples (quercetin) and citrus fruits (rutin/hesperidin) supply different flavonoid subclasses. What does this imply about a varied fruit diet?", a:"Different fruits contribute structurally distinct flavonoid subclasses, so a varied fruit intake provides a broader spectrum of flavonoid antioxidants than relying on a single fruit source."},
+  {cat:"biosynthesis", level:1, q:"By which two combined pathways are flavonoids biosynthesized?", a:"The shikimic acid pathway and the acetate–mevalonate pathway."},
+  {cat:"biosynthesis", level:1, q:"Which amino acid starts the shikimic-acid branch of flavonoid biosynthesis?", a:"Phenylalanine."},
+  {cat:"biosynthesis", level:1, q:"What reaction converts phenylalanine into cinnamic acid?", a:"Deamination."},
+  {cat:"biosynthesis", level:1, q:"What is formed when cinnamic acid is hydroxylated at the para position?", a:"4-Coumaric acid (p-coumaric acid)."},
+  {cat:"biosynthesis", level:1, q:"What activated (acylated) form does p-coumaric acid take before combining with acetate units?", a:"p-Coumaroyl-CoA."},
+  {cat:"biosynthesis", level:1, q:"How many acetate (malonyl-CoA) units combine with p-coumaroyl-CoA to yield chalcone?", a:"Three."},
+  {cat:"biosynthesis", level:1, q:"What compound is described as 'the true backbone of flavonoids'?", a:"Chalcone."},
+  {cat:"biosynthesis", level:1, q:"What process converts chalcone into the familiar cyclized flavonoid form?", a:"Ring closure (cyclization)."},
+  {cat:"biosynthesis", level:2, q:"Which enzyme converts acetyl-CoA into malonyl-CoA in the acetate-mevalonate branch?", a:"Acetyl-CoA carboxylase (ACCase)."},
+  {cat:"biosynthesis", level:2, q:"In the biosynthetic flow chart, which two flavonoid subclasses are formed directly from flavanones?", a:"Flavones and isoflavones."},
+  {cat:"biosynthesis", level:2, q:"In the biosynthetic flow chart, what intermediate is formed from flavanones before flavonols?", a:"Dihydroflavonols."},
+  {cat:"biosynthesis", level:2, q:"What two classes of compounds are ultimately formed from dihydroflavonols, besides flavonols?", a:"Anthocyanins and tannins."},
+  {cat:"biosynthesis", level:2, q:"Why are flavonoids said to be of 'mixed biosynthesis'?", a:"Because their skeleton is built from units contributed by both the shikimic acid pathway and the acetate (malonate) pathway."},
+  {cat:"biosynthesis", level:2, q:"Which parts of the flavonoid skeleton are derived from the shikimic acid pathway?", a:"Ring B and the three-carbon bridge (C2, C3, C4) connecting it to ring A."},
+  {cat:"biosynthesis", level:2, q:"Which part of the flavonoid skeleton is derived from malonyl-CoA units?", a:"Ring A."},
+  {cat:"biosynthesis", level:2, q:"What is the first fully cyclized flavonoid formed from chalcone?", a:"Flavanone."},
+  {cat:"biosynthesis", level:3, q:"Trace the full sequence of intermediates, in order, from phenylalanine to chalcone.", a:"Phenylalanine → (deamination) → cinnamic acid → (para-hydroxylation) → p-coumaric acid → (activation) → p-coumaroyl-CoA → (condensation with 3 malonyl-CoA units) → chalcone."},
+  {cat:"biosynthesis", level:3, q:"If the enzyme catalyzing deamination of phenylalanine were completely inhibited, what would you predict for flavonoid biosynthesis, and why?", a:"Flavonoid biosynthesis would be blocked or severely reduced, because cinnamic acid — and everything downstream, including p-coumaroyl-CoA and chalcone — could no longer form from phenylalanine."},
+  {cat:"biosynthesis", level:3, q:"Explain, at the level of carbon origin, why the flavonoid skeleton is a hybrid of two biosynthetic pathways.", a:"The C6-C3 unit (ring B plus the 3-carbon bridge) comes from phenylalanine via the shikimic acid pathway, while ring A is built from three malonyl-CoA units via the acetate-mevalonate pathway — the finished molecule contains carbons from two separate origins."},
+  {cat:"biosynthesis", level:3, q:"Chalcone is not itself a 'true flavonoid,' yet sits at the center of the biosynthetic flow chart. Reconcile these two facts.", a:"Chalcone is the branch-point precursor from which every true flavonoid class (flavanones, flavones, isoflavones, flavonols, anthocyanins, tannins) arises after ring closure, but its own uncyclized 3-carbon chain means it does not itself meet the structural definition of a true flavonoid."},
+  {cat:"biosynthesis", level:3, q:"What single biosynthetic divergence at the flavanone stage explains why flavones keep ring B at C-2 while isoflavones have it at C-3?", a:"A 1,2-aryl migration of ring B from C-2 to C-3 occurs on the isoflavone route, while the flavone route retains ring B at C-2 and instead introduces the C2–C3 double bond."},
+  {cat:"biosynthesis", level:3, q:"Anthocyanins/tannins and flavonols both arise from dihydroflavonols. What does this shared origin imply about their structural relationship?", a:"Because they diverge from the same dihydroflavonol intermediate, anthocyanins and flavonols share the same core ring-substitution pattern established earlier in the pathway, differing mainly in the final oxidation/reduction state of ring C rather than in B-ring substitution."},
+  {cat:"antioxidant", level:1, q:"Write the general equation describing direct free-radical scavenging by a flavonoid.", a:"Flavonoid(OH) + R• → Flavonoid(O•) + RH."},
+  {cat:"antioxidant", level:1, q:"In the scavenging equation, what does 'R•' represent?", a:"A free radical."},
+  {cat:"antioxidant", level:1, q:"Why are flavonoids effective at directly scavenging free radicals?", a:"Because of the high reactivity of their hydroxyl groups."},
+  {cat:"antioxidant", level:1, q:"Which enzyme activity do flavonoids interfere with to indirectly reduce nitric-oxide-related oxidative damage?", a:"Inducible nitric oxide synthase (iNOS)."},
+  {cat:"antioxidant", level:1, q:"What highly damaging species forms when nitric oxide radicals react with oxygen free radicals?", a:"Peroxynitrite."},
+  {cat:"antioxidant", level:1, q:"Which flavonoid is specifically named for its iron-chelating and iron-stabilizing properties?", a:"Quercetin."},
+  {cat:"antioxidant", level:1, q:"Which ring-B substitution pattern confers the greatest basic radical-scavenging ability?", a:"A catechol (ortho-dihydroxy) group."},
+  {cat:"antioxidant", level:1, q:"Which ring-B substitution, seen in myricetin, gives even higher scavenging activity than catechol?", a:"A pyrogallol (trihydroxy) group."},
+  {cat:"antioxidant", level:1, q:"Name two ring-A hydroxyls that may add extra scavenging potential in certain cases.", a:"5-OH and 7-OH."},
+  {cat:"antioxidant", level:2, q:"Name two exogenous sources of free radicals mentioned in the lecture.", a:"Any two of: radiation, smoking, chemical pollutants, ozone, X-ray, environmental pollutants, sunlight, pesticides, food/food additives, medications."},
+  {cat:"antioxidant", level:2, q:"Name two endogenous sources of free radicals mentioned in the lecture.", a:"Any two of: peroxisomes, xanthine oxidase, phagocytosis, the arachidonate pathway, heavy metals in the body, inflammation, ischemia, mitochondria."},
+  {cat:"antioxidant", level:2, q:"Name three cellular components damaged by reactive oxygen species, as shown in the oxidative-injury diagram.", a:"Any three of: DNA, RNA, proteins, lipids."},
+  {cat:"antioxidant", level:2, q:"What feature of ring C increases radical-scavenging activity by stabilizing the radical formed after H-donation?", a:"The C2–C3 double bond."},
+  {cat:"antioxidant", level:2, q:"Which functional group at C-4 of ring C, especially combined with the C2–C3 double bond, increases scavenger activity?", a:"The 4-oxo (keto) group."},
+  {cat:"antioxidant", level:2, q:"Which single hydroxyl, combined with the C2–C3 double bond and the 4-oxo group, produces the most active scavenger 'on top of' the catechol group?", a:"The 3-OH group."},
+  {cat:"antioxidant", level:2, q:"When flavonoids scavenge free radicals, how does this reduce peroxynitrite formation?", a:"With fewer free radicals available to react with nitric oxide, less peroxynitrite forms; flavonoids can also directly scavenge nitric oxide radicals themselves."},
+  {cat:"antioxidant", level:3, q:"Using the cascade O2 → O2•– → H2O2 → •OH, at which step does iron become important, and why is flavonoid iron-chelation protective there?", a:"Iron catalyzes the Fenton reaction converting H2O2 into the highly reactive hydroxyl radical; chelating iron (e.g. by quercetin) removes the catalytic metal needed for this step, preventing formation of the most damaging radical and limiting lipid peroxidation."},
+  {cat:"antioxidant", level:3, q:"Compare quercetin and myricetin structurally and explain why myricetin is predicted to be the more potent radical scavenger.", a:"Quercetin has a catechol (3′,4′-dihydroxy) group on ring B, while myricetin has a pyrogallol (3′,4′,5′-trihydroxy) group; since pyrogallol substitution confers even higher scavenging activity than catechol, myricetin is predicted to be the more potent scavenger."},
+  {cat:"antioxidant", level:3, q:"Based on the structure–activity rules given, what feature combination would give the 'best possible' direct radical-scavenging flavonoid?", a:"A pyrogallol (or at minimum catechol) group on ring B combined with the C2–C3 double bond, the 4-oxo group, and a 3-OH on ring C (plus 5-OH/7-OH on ring A), since each feature independently boosts scavenging and this combination is stated to be the best on top of the catechol/pyrogallol ring."},
+  {cat:"antioxidant", level:3, q:"Why does quercetin's action on the nitric-oxide/peroxynitrite system have both a direct and an indirect antioxidant benefit?", a:"Directly, quercetin can itself scavenge nitric oxide radicals; indirectly, by scavenging the co-reactant oxygen free radicals it removes the partner NO• needs to form peroxynitrite, so less peroxynitrite forms even without touching NO• directly."},
+  {cat:"antioxidant", level:3, q:"A flavonoid has a saturated ring C (no C2–C3 double bond, no 4-oxo) but a catechol group on ring B. Would you expect it to scavenge as well as quercetin?", a:"No — it would be weaker than quercetin, because although catechol contributes good scavenging ability, the molecule lacks the additional stabilizing contributions of the C2–C3 double bond, the 4-oxo group, and the 3-OH group that quercetin possesses."},
+  {cat:"antioxidant", level:3, q:"How does the oxidative-injury cascade (ROS → DNA/RNA/protein/lipid damage) mechanistically link antioxidant activity to the antitumor effects discussed later?", a:"Unrepaired ROS-induced DNA damage can mutate critical genes such as p53; by scavenging upstream radicals or chelating the iron that drives the Fenton reaction, flavonoids intercept this cascade early, connecting their antioxidant action to their proposed anticarcinogenic effect."},
+  {cat:"pharmacology", level:1, q:"Which two enzymes involved in inflammation are inhibited by flavonoid phenolic compounds?", a:"Cyclooxygenase (COX) and 5-lipoxygenase (5-LOX)."},
+  {cat:"pharmacology", level:1, q:"What starting molecule for the general inflammatory response is released via the COX/lipoxygenase pathways?", a:"Arachidonic acid."},
+  {cat:"pharmacology", level:1, q:"Name one class of eicosanoids whose biosynthesis flavonoids inhibit.", a:"Prostaglandins."},
+  {cat:"pharmacology", level:1, q:"Which immune-cell process, linked to arachidonic acid release, do flavonoids inhibit?", a:"Neutrophil degranulation."},
+  {cat:"pharmacology", level:1, q:"Which tumor suppressor gene is mentioned as being damaged by reactive oxygen species, potentially leading to cancer?", a:"p53."},
+  {cat:"pharmacology", level:1, q:"Which two flavonoids are named as inhibiting DNA, RNA, and protein synthesis in tumor cells?", a:"Quercetin and kaempferol."},
+  {cat:"pharmacology", level:1, q:"Which three flavonoids are specifically highlighted for hepatoprotective activity?", a:"Silymarin, quercetin, and rutin."},
+  {cat:"pharmacology", level:1, q:"Through raising the level of which liver antioxidant molecule do hepatoprotective flavonoids act?", a:"Glutathione."},
+  {cat:"pharmacology", level:1, q:"What historic name is given to rutin, hesperidin, and quercetin because of their vascular effect?", a:"Vitamin P (permeability factors)."},
+  {cat:"pharmacology", level:2, q:"What is the main protective role of glutathione in the liver, which hepatoprotective flavonoids enhance?", a:"Detoxifying a wide range of drugs and chemicals that could otherwise cause liver damage."},
+  {cat:"pharmacology", level:2, q:"Besides raising glutathione, what other hepatic process do flavonoids like silymarin increase, aiding hepatocyte repair?", a:"Protein synthesis in the liver."},
+  {cat:"pharmacology", level:2, q:"What vascular symptoms do rutin, hesperidin, and quercetin help treat, related to their 'Vitamin P' activity?", a:"Capillary bleeding and increased capillary fragility."},
+  {cat:"pharmacology", level:2, q:"What happens to heat shock proteins when flavonoids act as anticancer agents, and why are these proteins relevant to cancer cells?", a:"Flavonoids reduce heat shock protein levels; these stress proteins (induced by UV, heat, or cold) are highly expressed in cancer cells and help them survive, so lowering them undermines cancer-cell survival."},
+  {cat:"pharmacology", level:2, q:"Which flavonoid is given as an example of a tyrosine kinase inhibitor that reduces cancer-cell proliferation?", a:"Quercetin."},
+  {cat:"pharmacology", level:2, q:"What cellular process do tyrosine kinases normally enhance that contributes to cancerous cell proliferation?", a:"Phosphorylation of cells."},
+  {cat:"pharmacology", level:2, q:"What proposed mechanism links reactive-oxygen-species damage to cancer initiation?", a:"ROS can damage DNA; division of cells with unrepaired or mis-repaired damage leads to mutations, and if these occur in critical or tumor suppressor genes (such as p53), cancer initiation or progression may result."},
+  {cat:"pharmacology", level:2, q:"How do flavonoids, as antioxidants, inhibit carcinogenesis at the level of cell behavior?", a:"By inhibiting cell proliferation — showing growth-inhibitory effects on several malignant tumor cell types via inhibiting biochemical events associated with cellular growth."},
+  {cat:"pharmacology", level:3, q:"Explain the full chain of reasoning by which COX/5-LOX inhibition by flavonoids ultimately reduces inflammation.", a:"COX and 5-LOX convert arachidonic acid into inflammatory eicosanoids (prostaglandins); by inhibiting both enzymes flavonoids reduce arachidonic acid release/metabolism, diminishing inflammatory metabolite formation, and combined with inhibiting neutrophil degranulation (which also limits arachidonic acid release), inflammation is reduced through multiple converging mechanisms."},
+  {cat:"pharmacology", level:3, q:"Explain how the three 'main mechanisms' of flavonoid anticancer action work at three different cellular levels.", a:"(1) Gene level — down-regulation of p53-related genes affecting apoptosis; (2) stress-response level — reduction of heat shock proteins that cancer cells rely on for survival; (3) signaling level — inhibition of tyrosine kinases (e.g. by quercetin) that drive phosphorylation-dependent proliferation."},
+  {cat:"pharmacology", level:3, q:"What common biochemical theme connects the hepatoprotective and antitumor actions of flavonoids discussed in the lecture?", a:"Antioxidant/free-radical-scavenging activity — flavonoids limit oxidative damage to hepatocytes (supporting repair and glutathione levels) and limit ROS-induced DNA damage/mutation in cells that could otherwise progress toward malignancy."},
+  {cat:"pharmacology", level:3, q:"Quercetin and rutin appear in both the hepatoprotective list and the 'Vitamin P' vascular list. What does this dual appearance suggest about their biological profile?", a:"It indicates these two flavonoids display broad, multi-system protective activity (hepatic and vascular) rather than a single narrow pharmacological effect."},
+  {cat:"pharmacology", level:3, q:"How does the clinical use of Daflon 500 mg for veno-lymphatic insufficiency relate to the 'Vitamin P / permeability factor' concept?", a:"Because hesperidin (like rutin and quercetin) reduces capillary fragility and permeability, strengthening the venous/capillary wall — this directly underlies its use for venous insufficiency and hemorrhoidal symptoms, where fragile, overly permeable vessels are part of the pathology."},
+  {cat:"pharmacology", level:3, q:"A flavonoid inhibits both cyclooxygenase and inducible nitric oxide synthase. Name a specific flavonoid fitting this profile and the two pathways it affects.", a:"Quercetin — it inhibits both COX-2 and iNOS, simultaneously dampening the arachidonic-acid/prostaglandin inflammatory pathway and the nitric-oxide/peroxynitrite oxidative pathway during inflammation."},
+  {cat:"drugs", level:1, q:"What is silymarin, chemically?", a:"A flavanonol (flavanolignan) mixture of silybin, silychristin, and silydianin."},
+  {cat:"drugs", level:1, q:"From which plant, and which plant part, is silymarin obtained?", a:"The seeds of milk thistle (Silybum marianum)."},
+  {cat:"drugs", level:1, q:"What is the aglycone of quercetin's glycosides quercitrin and rutin?", a:"Quercetin itself."},
+  {cat:"drugs", level:1, q:"Which enzyme does quercetin inhibit that is linked to uric acid formation, relevant in gout?", a:"Xanthine oxidase."},
+  {cat:"drugs", level:1, q:"What is myricetin especially effective at protecting cells against?", a:"Carcinogenic mutation."},
+  {cat:"drugs", level:1, q:"What is the aglycone of hesperidin?", a:"Hesperetin."},
+  {cat:"drugs", level:1, q:"In which plant source is hesperidin found in high concentration?", a:"Citrus fruit trees."},
+  {cat:"drugs", level:1, q:"What class of flavonoid is genistein?", a:"An isoflavonoid."},
+  {cat:"drugs", level:2, q:"Name two clinical benefits of silymarin besides its core liver-protective action.", a:"Any two of: lowering cholesterol, reducing chemo/radiation-induced cell damage, reducing growth of breast/cervical/prostate cancer cells, Alzheimer's disease prevention/treatment."},
+  {cat:"drugs", level:2, q:"Which vitamin does quercetin help 'reactivate' as part of its antioxidant action, and against which reactive species does this help?", a:"Vitamin E (tocopherol); this helps work off superoxide ions (reactive oxygen species)."},
+  {cat:"drugs", level:2, q:"Under what skin condition does quercetin's antioxidant/ROS-scavenging role become particularly relevant?", a:"Excessive sun exposure (in time or intensity), which causes ROS to accumulate in the skin."},
+  {cat:"drugs", level:2, q:"Name a branded drug containing hesperidin, and state its therapeutic use.", a:"Daflon 500 mg, used for veno-lymphatic insufficiency and acute hemorrhoidal attack symptoms."},
+  {cat:"drugs", level:2, q:"What hormone-like activity does genistein exhibit, and in what type of product is it therefore used?", a:"Phytoestrogenic activity; used in female-directed supplements aimed at estrogen-deficiency symptoms."},
+  {cat:"drugs", level:2, q:"From what types of food sources is myricetin commonly derived?", a:"Vegetables, fruits, nuts, and tea."},
+  {cat:"drugs", level:3, q:"Silymarin is described as a 'flavanonol mixture.' Relate this to the classification scheme and explain what it implies about ring C of its components.", a:"A flavanonol is a dihydroflavonol — ring C bears both the 4-oxo group and a 3-OH group but is saturated at C2–C3; silymarin's constituents (silybin, silychristin, silydianin) each carry this dihydroflavonol-type ring C, fused to an extra phenylpropanoid-derived dioxane ring."},
+  {cat:"drugs", level:3, q:"Quercetin is both a hepatoprotective agent and a tyrosine kinase inhibitor with anticancer activity. How could these roles act together in someone with chemically induced liver damage?", a:"As a hepatoprotective antioxidant, quercetin raises hepatic glutathione and limits free-radical damage to hepatocytes, supporting repair, while its anti-proliferative tyrosine-kinase-inhibiting action could simultaneously suppress abnormal proliferative signaling in the damaged/regenerating liver tissue."},
+  {cat:"drugs", level:3, q:"Rutin and quercitrin are both quercetin glycosides differing in attached sugar. What would you predict stays the same and what may differ between them, pharmacologically?", a:"Their intrinsic pharmacological activity should stay essentially the same, since it comes from the shared aglycone (quercetin); what may differ is solubility and rate/extent of absorption, which are governed by the glycone."},
+  {cat:"drugs", level:3, q:"Hesperidin (citrus) and rutin (other plant sources) are both 'Vitamin P' flavonoids used for capillary fragility. What shared property, not plant origin, explains this common use?", a:"Both are flavonoid glycosides that reduce capillary permeability/fragility — a property shared by the whole Vitamin-P group (rutin, hesperidin, quercetin) regardless of their original plant source."},
+  {cat:"drugs", level:3, q:"Why can genistein (an isoflavone) mimic estrogen more effectively than a flavone with similar hydroxylation but ring B at C-2?", a:"In genistein, ring B is attached at C-3 rather than C-2, giving a three-dimensional shape and hydroxyl spacing that more closely resembles estradiol, allowing better estrogen-receptor binding than the C-2-attached ring B of an ordinary flavone."},
+  {cat:"drugs", level:3, q:"Why might combining silymarin and quercetin offer broader hepatoprotection than either alone?", a:"Silymarin mainly boosts endogenous detoxification via glutathione and protein synthesis, while quercetin additionally chelates free iron and scavenges radicals/lipid-peroxidation intermediates — together they target liver protection through complementary rather than redundant mechanisms."}
+];
+
+const catLabels = {structure:"Structure", classes:"Classification", sources:"Sources & Function", biosynthesis:"Biosynthesis", antioxidant:"Antioxidant / SAR", pharmacology:"Pharmacology", drugs:"Drugs & Examples"};
+const levelLabels = {1:"Level 1 · Easy", 2:"Level 2 · Medium", 3:"Level 3 · Hard"};
+let activeCat = "all";
+let activeLevelFlash = 1;
+
+function renderLevelRowFlash(){
+  const row = document.getElementById('level-row-flash');
+  row.innerHTML = '';
+  [1,2,3].forEach(lv=>{
+    const chip = document.createElement('button');
+    chip.className = 'chip';
+    chip.textContent = levelLabels[lv];
+    chip.setAttribute('aria-pressed', lv === activeLevelFlash ? 'true' : 'false');
+    chip.addEventListener('click', ()=>{ activeLevelFlash = lv; renderLevelRowFlash(); renderCards(); });
+    row.appendChild(chip);
+  });
+}
+
+function renderChips(){
+  const row = document.getElementById('chip-row');
+  const cats = ["all", ...Object.keys(catLabels)];
+  row.innerHTML = '';
+  cats.forEach(c=>{
+    const chip = document.createElement('button');
+    chip.className = 'chip';
+    chip.textContent = c === 'all' ? 'All topics' : catLabels[c];
+    chip.setAttribute('aria-pressed', c === activeCat ? 'true' : 'false');
+    chip.addEventListener('click', ()=>{ activeCat = c; renderChips(); renderCards(); });
+    row.appendChild(chip);
+  });
+}
+
+function renderCards(){
+  const grid = document.getElementById('card-grid');
+  grid.innerHTML = '';
+  let list = flashcards.filter(c=>c.level===activeLevelFlash);
+  if(activeCat !== 'all') list = list.filter(c=>c.cat===activeCat);
+  document.getElementById('deck-count').textContent = list.length + ' cards';
+  list.forEach(c=>{
+    const card = document.createElement('div');
+    card.className = 'flash';
+    card.innerHTML = `
+      <div class="flash-inner">
+        <div class="flash-face flash-front">
+          <div class="flash-tag">${catLabels[c.cat]}</div>
+          <div class="flash-q">${c.q}</div>
+          <div class="flash-hint">Tap to reveal</div>
+        </div>
+        <div class="flash-face flash-back">
+          <div class="flash-tag">Answer</div>
+          <div class="flash-a">${c.a}</div>
+          <div class="flash-hint">Tap to flip back</div>
+        </div>
+      </div>`;
+    card.addEventListener('click', ()=>card.classList.toggle('flipped'));
+    grid.appendChild(card);
+  });
+}
+renderLevelRowFlash();
+renderChips();
+renderCards();
+
+/* =========================================================
+   QUIZ BANK
+========================================================= */
+const quizBank = [
+  {cat:"structure", level:1, q:"Flavonoids are chemically classified as:", options:["Alkaloids","Terpenoids","Polyphenolic compounds","Glycolipids"], correct:2},
+  {cat:"structure", level:1, q:"The basic carbon skeleton of the flavonoid nucleus is:", options:["C6-C6","C6-C3-C6","C6-C1","C3-C6-C3"], correct:1},
+  {cat:"structure", level:1, q:"How many carbon atoms make up the basic flavonoid skeleton?", options:["10","12","15","18"], correct:2},
+  {cat:"structure", level:1, q:"The two benzene rings of a flavonoid are joined by:", options:["A single bond","A short three-carbon chain","A five-carbon chain","A nitrogen bridge"], correct:1},
+  {cat:"structure", level:1, q:"The three-carbon bridge in flavonoids is commonly cyclized with:", options:["Nitrogen","Sulfur","Oxygen","Phosphorus"], correct:2},
+  {cat:"structure", level:1, q:"Flavonoids are classified biologically as:", options:["Primary metabolites","Aromatic secondary plant metabolites","Structural proteins","Storage lipids"], correct:1},
+  {cat:"structure", level:1, q:"In a flavonoid glycoside, the part responsible for pharmacological activity is the:", options:["Glycone","Aglycone","Sugar chain","Anomeric carbon"], correct:1},
+  {cat:"structure", level:1, q:"In a flavonoid glycoside, the sugar-containing part is called the:", options:["Aglycone","Glycone","Chromophore","Backbone"], correct:1},
+  {cat:"structure", level:1, q:"Flavonoids belong to which broad class of plant compounds, explaining their antioxidant activity?", options:["Plant alkaloids","Plant phenolics","Plant terpenes","Plant proteins"], correct:1},
+  {cat:"structure", level:2, q:"The bicyclic parent structure of flavan-type compounds (rings A+C) is called:", options:["Benzopyrone","Benzofuran","Benzopyran","Indole"], correct:2},
+  {cat:"structure", level:2, q:"The bicyclic parent structure of flavone-type compounds (rings A+C) is called:", options:["Benzopyran","Benzopyrone","Chromene only","Pyridine"], correct:1},
+  {cat:"structure", level:2, q:"The sugar (glycone) part of a flavonoid glycoside mainly serves to:", options:["Provide antioxidant activity directly","Increase solubility and absorption of the aglycone","Give the compound its color","Directly inhibit enzymes"], correct:1},
+  {cat:"structure", level:2, q:"In flavonoids, hydroxyl groups are nearly always found on ring A at positions:", options:["3 and 4′","5 and 7","6 and 8","2′ and 6′"], correct:1},
+  {cat:"structure", level:2, q:"Ring B of flavonoids commonly carries hydroxyl/alkoxyl groups at:", options:["2′ only","4′, or both 3′ and 4′","5′ and 6′ only","1′ only"], correct:1},
+  {cat:"structure", level:2, q:"The sugar of a flavonoid glycoside may attach to:", options:["Only the 7-OH","Only the 3-OH","Any of the available hydroxyl groups","Only ring B hydroxyls"], correct:2},
+  {cat:"structure", level:2, q:"Which statement correctly differentiates flavan from flavone?", options:["Flavone has no oxygen in ring C","Flavone has a 4-oxo group and typically a C2–C3 double bond that flavan lacks","Flavan has one more benzene ring than flavone","They differ only in molecular weight"], correct:1},
+  {cat:"structure", level:3, q:"Two compounds have identical ring-A/ring-C substitution; one is a free aglycone, the other its glycoside. Which is expected to show a stronger direct receptor-level effect?", options:["The glycoside, because sugars enhance receptor binding","The aglycone, because the glycone itself carries no pharmacological activity","Both equally","Neither, since flavonoids need the intact glycoside to be active"], correct:1},
+  {cat:"structure", level:3, q:"Which best explains why flavonoids are termed 'polyphenolic'?", options:["They contain a single phenol group","Multiple hydroxylated aromatic rings (A and B) provide several phenolic -OH groups per molecule","They are polymers of phenol","They contain only ring A hydroxyls"], correct:1},
+  {cat:"structure", level:3, q:"Comparing the plant-phenol skeleton table, what uniquely distinguishes flavonoids from cinnamic-acid type compounds?", options:["An extra aromatic C6 ring","An extra carboxylic acid group","Loss of the C3 bridge","Presence of nitrogen"], correct:0},
+  {cat:"structure", level:3, q:"Cyclization of the 3-carbon bridge with oxygen in flavonoid biogenesis directly produces which structural feature?", options:["Ring B","The pyran/pyrone oxygen-containing ring C","An additional benzene ring","A glycosidic bond"], correct:1},
+  {cat:"structure", level:3, q:"If the glycone of a flavonoid glycoside were removed by hydrolysis, what would happen to its intrinsic activity and oral bioavailability?", options:["Both would increase","Intrinsic activity stays with the aglycone, but solubility/absorption may decrease","Both would be lost","Both would be unaffected"], correct:1},
+  {cat:"structure", level:3, q:"Why does the position of ring-B attachment (C-2 vs C-3) matter more for classification than simply counting hydroxyl groups?", options:["It changes the molecular formula","It defines entirely separate subclasses with different 3-D shapes and bioactivity","Hydroxyl count is irrelevant to flavonoid chemistry","Ring-B position never affects classification"], correct:1},
+  {cat:"classes", level:1, q:"Flavonoid classes are differentiated based on all of the following EXCEPT:", options:["Degree of unsaturation in ring C","Degree of oxidation of the 3-carbon segment","Position of ring B substitution","Molecular weight of the attached sugar"], correct:3},
+  {cat:"classes", level:1, q:"In isoflavones, ring B is attached to ring C at position:", options:["2","3","4","6"], correct:1},
+  {cat:"classes", level:1, q:"Chalcones are not considered 'true' flavonoids because they:", options:["Lack ring B","Have no central pyrone ring (the 3C chain is not cyclized)","Are always glycosides","Contain nitrogen"], correct:1},
+  {cat:"classes", level:1, q:"Chalcone is best described as:", options:["A degradation product of flavonoids","The basic biosynthetic precursor of flavonoids","A subtype of isoflavonoid","A type of tannin"], correct:1},
+  {cat:"classes", level:1, q:"Simple phenols such as catechol have the basic skeleton:", options:["C6","C6-C1","C6-C3","C6-C3-C6"], correct:0},
+  {cat:"classes", level:1, q:"Phenolic acids such as salicylic acid have the basic skeleton:", options:["C6","C6-C1","C6-C3","C6-C3-C6"], correct:1},
+  {cat:"classes", level:1, q:"Cinnamic-acid type compounds have the basic skeleton:", options:["C6","C6-C1","C6-C3","C6-C3-C6"], correct:2},
+  {cat:"classes", level:1, q:"Flavonoids, among the major classes of plant phenols, have the basic skeleton:", options:["C6","C6-C1","C6-C3","C6-C3-C6"], correct:3},
+  {cat:"classes", level:1, q:"A flavan/flavone-type compound has ring B attached to ring C at position:", options:["1","2","3","4"], correct:1},
+  {cat:"classes", level:2, q:"A flavanone differs from a flavan in that it possesses:", options:["A 3-OH group","A 4-oxo (keto) group","A C2–C3 double bond","An extra benzene ring"], correct:1},
+  {cat:"classes", level:2, q:"A flavanol (catechin-type compound) differs from a flavan in that it possesses:", options:["A 4-oxo group","A 3-OH group","A C2–C3 double bond","A glycosidic bond"], correct:1},
+  {cat:"classes", level:2, q:"A flavanonol (dihydroflavonol) is best described as:", options:["A flavanone plus a 3-OH group","A flavone minus the 4-oxo group","A chalcone with a closed ring","An isoflavone isomer"], correct:0},
+  {cat:"classes", level:2, q:"A flavonol differs from a flavanonol (dihydroflavonol) in that it additionally has:", options:["A 4-oxo group","A C2–C3 double bond","A 3-OH group","Ring B at C-3"], correct:1},
+  {cat:"classes", level:2, q:"Isoflavones and flavones share the same:", options:["Position of ring B attachment","Oxidation state of the C-ring (4-oxo + C2-C3 double bond)","Number of aromatic rings only","Sugar content"], correct:1},
+  {cat:"classes", level:2, q:"Anthocyanidins are biogenetically derived mainly from which flavonoid branch?", options:["The chalcone branch directly","The flavonol branch","The isoflavone branch","The tannin branch only"], correct:1},
+  {cat:"classes", level:2, q:"What structurally distinguishes an anthocyanidin's ring C from that of a flavonol?", options:["It carries a positively charged (flavylium) oxygen","It lacks any oxygen in the ring","It has two oxygen atoms","It is a five-membered ring"], correct:0},
+  {cat:"classes", level:3, q:"A compound has a saturated ring C, no 4-oxo group, but does carry a 3-OH group. It should be classified as a:", options:["Flavanone","Flavanol (catechin-type)","Flavone","Flavonol"], correct:1},
+  {cat:"classes", level:3, q:"Silymarin's active constituents are 'flavanonol' compounds. Which two ring-C features must be present, with C2–C3 saturated?", options:["4-oxo and C2-C3 double bond","3-OH and 4-oxo","3-OH and C2-C3 double bond","Ring B at C-3 and 4-oxo"], correct:1},
+  {cat:"classes", level:3, q:"Which statement correctly ranks the degree of oxidation of ring C from lowest to highest?", options:["Flavan < Flavanone < Flavanonol < Flavonol","Flavonol < Flavanonol < Flavanone < Flavan","Flavanone < Flavan < Flavonol < Flavanonol","Flavonol < Flavan < Flavanone < Flavanonol"], correct:0},
+  {cat:"classes", level:3, q:"An open-chain C6-C3-C6 compound with an uncyclized three-carbon bridge is called a:", options:["Flavanone","Chalcone","Flavonol","Isoflavone"], correct:1},
+  {cat:"classes", level:3, q:"Genistein's ability to act as a phytoestrogen is best explained structurally by:", options:["Its extra methoxy group","Ring B attachment at C-3 giving estrogen-receptor-compatible spacing","Its glycoside sugar","Its lack of any hydroxyl groups"], correct:1},
+  {cat:"sources", level:1, q:"Which of the following is cited as the most important dietary source group of flavonoids?", options:["Meat, dairy, eggs","Fruits, tea, soybean","Grains, oils, sugar","Fish and shellfish"], correct:1},
+  {cat:"sources", level:1, q:"Green and black tea contain about what percentage of flavonoids?", options:["5%","15%","25%","50%"], correct:2},
+  {cat:"sources", level:1, q:"Apples are a particularly rich source of which flavonoid?", options:["Hesperidin","Rutin","Quercetin","Genistein"], correct:2},
+  {cat:"sources", level:1, q:"Citrus fruits are particularly rich in which two flavonoid glycosides?", options:["Rutin and hesperidin","Silymarin and myricetin","Genistein and daidzein","Catechin and epicatechin"], correct:0},
+  {cat:"sources", level:1, q:"Flavonoids are described as the widest group of natural products contributing to:", options:["Plant nitrogen content","Plant color (pigment characteristics)","Plant cell-wall rigidity","Plant seed dormancy"], correct:1},
+  {cat:"sources", level:1, q:"Which of the following is NOT a stated function of flavonoids in plants?", options:["Pigmentation","UV screening","Hormone synthesis in animals","Defense mechanism"], correct:2},
+  {cat:"sources", level:1, q:"According to the lecture, flavonoids can affect the taste of food by making it:", options:["Sour or salty","Bitter or sweet","Only sour","Tasteless"], correct:1},
+  {cat:"sources", level:1, q:"Flavonoids screen plants from ultraviolet radiation mainly because:", options:["They form a physical barrier layer","Their colors/pigments absorb UV light","They reflect all visible light","They increase leaf thickness"], correct:1},
+  {cat:"sources", level:2, q:"Which flavonoid subclass is specifically associated with legume/soy-type dietary sources in the sources diagram?", options:["Anthocyanins","Isoflavonoids","Chalcones","Flavanone"], correct:1},
+  {cat:"sources", level:2, q:"Which flavonoid subclass is associated with berries, plums, and grapes in the sources diagram?", options:["Flavone","Anthocyanins","Isoflavonoids","Chalcones"], correct:1},
+  {cat:"sources", level:2, q:"What role do flavonoids play in supporting plant tissues, besides pigmentation and UV protection?", options:["Nitrogen fixation","Healthy growth and proliferation of plant tissues","Water transport","Photosynthesis directly"], correct:1},
+  {cat:"sources", level:2, q:"Besides pigmentation, UV screening, taste, and growth support, what additional plant role is attributed to flavonoids?", options:["Seed germination inhibition only","A defense mechanism","Root elongation only","Chlorophyll synthesis"], correct:1},
+  {cat:"sources", level:2, q:"The lecture states flavonoids are found in:", options:["Only flower petals","Most plant material","Only root tissue","Only seeds"], correct:1},
+  {cat:"sources", level:2, q:"How many major dietary source categories (fruits, tea, soybean) are explicitly named as 'most important' for flavonoid intake?", options:["One","Two","Three","Four"], correct:2},
+  {cat:"sources", level:2, q:"Based on the sources diagram, which flavonoid subclass is associated most with citrus/grape-type fruit sources shown alongside flavanone?", options:["Isoflavonoids","Flavone","Chalcones","Anthocyanins"], correct:1},
+  {cat:"sources", level:3, q:"A plant is grown under intense, prolonged sun exposure versus a shaded control. Based on the UV-screening function of flavonoids, what change in flavonoid content would you predict?", options:["A decrease, because UV degrades flavonoids","An increase, because more pigment is needed to absorb and screen the additional UV","No change, since synthesis is UV-independent","A decrease, because flavonoids only form in darkness"], correct:1},
+  {cat:"sources", level:3, q:"Why would removing fruit, tea, and soybean simultaneously from a diet have an especially large impact on total flavonoid intake?", options:["Because these three are specifically named as the most important dietary sources","Because only these three foods contain any flavonoids at all","Because flavonoids are destroyed by cooking any other food","Because flavonoids are absent from vegetables"], correct:0},
+  {cat:"sources", level:3, q:"The same pigment chromophore is credited with both giving plants color and protecting them from UV. What does this indicate?", options:["They are unrelated coincidental functions","The same light-absorbing feature underlies both visible color and UV-absorbing capacity","Only synthetic pigments provide UV protection","Color and UV protection require different flavonoid classes"], correct:1},
+  {cat:"sources", level:3, q:"Bitter-tasting flavonoid content in certain plant parts is linked to which other stated plant function?", options:["Photosynthesis","Defense mechanism against herbivory","Water retention","Nitrogen fixation"], correct:1},
+  {cat:"sources", level:3, q:"Apples (rich in quercetin) and citrus fruits (rich in rutin/hesperidin) are both cited as dietary sources. What does this best illustrate?", options:["All fruits provide an identical flavonoid profile","Different fruits contribute structurally distinct flavonoid subclasses, so dietary variety broadens intake","Only citrus fruits contain flavonoids","Flavonol and flavanone-glycoside content is mutually exclusive in nature"], correct:1},
+  {cat:"biosynthesis", level:1, q:"Flavonoid biosynthesis proceeds mainly via:", options:["Only the shikimic acid pathway","Only the acetate-mevalonate pathway","A mixed shikimic acid + acetate-mevalonate pathway","The mevalonate pathway alone"], correct:2},
+  {cat:"biosynthesis", level:1, q:"Which amino acid initiates the shikimic-acid branch of flavonoid biosynthesis?", options:["Tyrosine","Tryptophan","Phenylalanine","Histidine"], correct:2},
+  {cat:"biosynthesis", level:1, q:"Deamination of phenylalanine produces:", options:["p-Coumaric acid","Cinnamic acid","Chalcone","Malonyl-CoA"], correct:1},
+  {cat:"biosynthesis", level:1, q:"Hydroxylation of cinnamic acid at the para position produces:", options:["Chalcone","p-Coumaric (4-coumaric) acid","Malonyl-CoA","Phenylalanine"], correct:1},
+  {cat:"biosynthesis", level:1, q:"How many malonyl-CoA (acetate) units combine with p-coumaroyl-CoA to form chalcone?", options:["One","Two","Three","Four"], correct:2},
+  {cat:"biosynthesis", level:1, q:"Chalcone is converted into flavanones by:", options:["Hydroxylation","Deamination","Ring closure (cyclization)","Glycosylation"], correct:2},
+  {cat:"biosynthesis", level:1, q:"What compound represents 'the true backbone of flavonoids' formed just before ring closure?", options:["Cinnamic acid","p-Coumaroyl-CoA","Chalcone","Flavanone"], correct:2},
+  {cat:"biosynthesis", level:1, q:"The enzyme ACCase, in the acetate-mevalonate branch, converts acetyl-CoA into:", options:["p-Coumaroyl-CoA","Malonyl-CoA","Chalcone","Cinnamic acid"], correct:1},
+  {cat:"biosynthesis", level:2, q:"In the biosynthetic flow chart, flavanones give rise directly to which two subclasses?", options:["Flavonols and anthocyanins","Flavones and isoflavones","Tannins and chalcones","Flavans and flavanols"], correct:1},
+  {cat:"biosynthesis", level:2, q:"Which intermediate lies between flavanones and flavonols in the biosynthetic pathway?", options:["Chalcone","Dihydroflavonols","Cinnamic acid","p-Coumaroyl-CoA"], correct:1},
+  {cat:"biosynthesis", level:2, q:"Besides flavonols, what two other product classes arise from dihydroflavonols?", options:["Isoflavones and chalcones","Anthocyanins and tannins","Flavanones and flavans","Phenolic acids and simple phenols"], correct:1},
+  {cat:"biosynthesis", level:2, q:"Which portion of the flavonoid skeleton is derived from the acetate-mevalonate pathway?", options:["Ring B","Ring A","The C2-C3 bond only","The attached sugar"], correct:1},
+  {cat:"biosynthesis", level:2, q:"Which portion of the flavonoid skeleton is derived from the shikimic acid pathway?", options:["Ring A only","Ring B and the C3 bridge","The attached glycone","Only the C2-C3 double bond"], correct:1},
+  {cat:"biosynthesis", level:2, q:"Flavonoids are described as having 'mixed biosynthesis' because:", options:["They are synthesized in two different plant organs","Their skeleton combines units from both the shikimic acid and acetate-mevalonate pathways","They require both plant and microbial enzymes","They can interconvert between plant and animal cells"], correct:1},
+  {cat:"biosynthesis", level:2, q:"p-Coumaroyl-CoA is the activated form of which acid?", options:["Cinnamic acid","p-Coumaric acid","Malonic acid","Shikimic acid"], correct:1},
+  {cat:"biosynthesis", level:2, q:"What is the first fully cyclized flavonoid formed after chalcone undergoes ring closure?", options:["Isoflavone","Flavanone","Flavonol","Anthocyanin"], correct:1},
+  {cat:"biosynthesis", level:3, q:"Put the following in correct biosynthetic order: (i) p-coumaroyl-CoA (ii) chalcone (iii) cinnamic acid (iv) flavanone.", options:["iii, i, ii, iv","i, iii, ii, iv","ii, iii, i, iv","iv, ii, i, iii"], correct:0},
+  {cat:"biosynthesis", level:3, q:"If phenylalanine deaminase activity were completely blocked in a plant, which would you most directly predict?", options:["Increased flavonol accumulation","Blocked flavonoid biosynthesis due to failure to form cinnamic acid","Increased chalcone accumulation only","No effect, since malonyl-CoA alone can form chalcone"], correct:1},
+  {cat:"biosynthesis", level:3, q:"Which statement correctly matches flavonoid structural portion to biosynthetic origin?", options:["Ring A from shikimate, ring B and the C3 bridge from acetate","Ring B and the C3 bridge from shikimate, ring A from acetate (malonyl-CoA)","Both rings A and B are shikimate-derived","Both rings A and B are acetate-derived"], correct:1},
+  {cat:"biosynthesis", level:3, q:"Isoflavones and flavones both derive from flavanones but differ in the position of ring B. What best explains this divergence?", options:["Isoflavones undergo a 1,2-aryl migration of ring B from C-2 to C-3, while flavones gain a C2-C3 double bond and keep ring B at C-2","Isoflavones form from a completely separate precursor unrelated to flavanones","Flavones lose ring B entirely","Isoflavones never form from flavanones"], correct:0},
+  {cat:"biosynthesis", level:3, q:"Anthocyanins/tannins and flavonols share a common precursor. Which one is it?", options:["Chalcone","Dihydroflavonols","Flavanones","p-Coumaroyl-CoA"], correct:1},
+  {cat:"biosynthesis", level:3, q:"Which best justifies calling chalcone 'the true flavonoid backbone' even though it is excluded from the true-flavonoid category?", options:["Chalcone contains nitrogen unlike other flavonoids","Chalcone is the direct biosynthetic precursor to every true flavonoid subclass, though its own 3-carbon chain has not yet cyclized","Chalcone is simply a degradation product with no biosynthetic role","Chalcone and flavanone have identical structures"], correct:1},
+  {cat:"antioxidant", level:1, q:"The general equation for direct free-radical scavenging by flavonoids is:", options:["Flavonoid(OH) + R• → Flavonoid(O•) + RH","Flavonoid + O2 → Flavonoid oxide","Flavonoid(OH) + H2O → Flavonoid glycoside","Flavonoid + NO• → Flavonoid nitrate"], correct:0},
+  {cat:"antioxidant", level:1, q:"Flavonoids reduce oxidative damage indirectly by inhibiting which enzyme?", options:["Xanthine oxidase only","Inducible nitric oxide synthase (iNOS)","Superoxide dismutase","Catalase"], correct:1},
+  {cat:"antioxidant", level:1, q:"Peroxynitrite is formed when nitric oxide radicals react with:", options:["Hydroxyl radicals","Oxygen free radicals","Glutathione","Vitamin E"], correct:1},
+  {cat:"antioxidant", level:1, q:"Which flavonoid is known for chelating iron and thereby inhibiting lipid peroxidation?", options:["Hesperidin","Genistein","Quercetin","Silymarin"], correct:2},
+  {cat:"antioxidant", level:1, q:"Which ring-B substitution pattern confers great radical-scavenging ability?", options:["Catechol (o-dihydroxy)","Monomethoxy","Unsubstituted phenyl","Nitro group"], correct:0},
+  {cat:"antioxidant", level:1, q:"Which ring-B substitution pattern gives even higher radical-scavenging activity than a simple catechol group?", options:["Monohydroxy","Pyrogallol (trihydroxy)","Methoxy","Carboxyl"], correct:1},
+  {cat:"antioxidant", level:1, q:"Which structural feature at C-4 of ring C increases radical-scavenging activity, especially with the C2-C3 double bond?", options:["4-oxo (keto) group","4-amino group","4-methyl group","4-sulfate group"], correct:0},
+  {cat:"antioxidant", level:1, q:"In the direct scavenging equation, the flavonoid neutralizes the free radical mainly by donating:", options:["An electron only","A hydrogen atom (from its OH group)","A proton without any electron","A whole oxygen atom"], correct:1},
+  {cat:"antioxidant", level:1, q:"What causes oxidative injury to DNA, RNA, proteins, and lipids in the cell?", options:["Excess vitamin intake","Reactive oxygen species","Excess dietary fiber","Normal glucose metabolism"], correct:1},
+  {cat:"antioxidant", level:2, q:"The list of exogenous sources of free radicals given in the lecture includes all of the following EXCEPT:", options:["Smoking","X-ray","Mitochondria","Pesticides"], correct:2},
+  {cat:"antioxidant", level:2, q:"The list of endogenous sources of free radicals given in the lecture includes all of the following EXCEPT:", options:["Peroxisomes","Xanthine oxidase","Ozone","Ischemia"], correct:2},
+  {cat:"antioxidant", level:2, q:"Which structural feature of ring C increases radical-scavenging activity by stabilizing the radical produced after H-atom donation?", options:["The 3-OH group alone","The C2–C3 double bond","A saturated C2–C3 bond","An extra methoxy at C-6"], correct:1},
+  {cat:"antioxidant", level:2, q:"Which single hydroxyl, combined with the C2–C3 double bond and 4-oxo group, produces the most active scavenger described in the lecture?", options:["7-OH","5-OH","3-OH","6-OH"], correct:2},
+  {cat:"antioxidant", level:2, q:"How does scavenging of free radicals by flavonoids indirectly reduce peroxynitrite formation?", options:["It directly destroys peroxynitrite after formation","It removes the oxygen free radicals that would otherwise react with nitric oxide","It increases nitric oxide synthase activity","It has no effect on peroxynitrite levels"], correct:1},
+  {cat:"antioxidant", level:2, q:"In the Fenton-type reaction shown in the lecture diagrams, hydrogen peroxide is converted into the hydroxyl radical in the presence of:", options:["Vitamin C","Iron (Fe²⁺/Fe³⁺)","Calcium","Sodium"], correct:1},
+  {cat:"antioxidant", level:2, q:"Which enzyme converts superoxide radical into hydrogen peroxide, according to the reactive-oxygen-species table?", options:["Catalase","Superoxide dismutase (SOD)","Glutathione peroxidase","NADPH oxidase"], correct:1},
+  {cat:"antioxidant", level:3, q:"Comparing quercetin and myricetin, which correctly explains myricetin's predicted greater radical-scavenging potency?", options:["Myricetin has a pyrogallol (trihydroxy) group on ring B versus quercetin's catechol group","Myricetin lacks the 4-oxo group that quercetin has","Myricetin has no hydroxyl groups on ring A","Quercetin has an extra sugar that myricetin lacks"], correct:0},
+  {cat:"antioxidant", level:3, q:"Based on the structural features listed for maximum scavenging activity, which combination is predicted to give the most potent direct radical scavenger?", options:["A saturated ring C with a monohydroxy ring B","Pyrogallol/catechol on ring B plus the C2–C3 double bond, 4-oxo group, and 3-OH on ring C","A flavan with no ring-C substituents","A glycoside with the sugar blocking the 3-OH position"], correct:1},
+  {cat:"antioxidant", level:3, q:"Why is flavonoid iron-chelation protective specifically at the hydroxyl-radical-forming step of the ROS cascade?", options:["Iron catalyzes the Fenton reaction converting H2O2 to the highly reactive •OH radical; chelating it removes this catalytic requirement","Iron is required for superoxide dismutase activity only","Iron directly forms peroxynitrite","Iron has no role in any step of the ROS cascade"], correct:0},
+  {cat:"antioxidant", level:3, q:"A flavonoid has a catechol group on ring B but a fully saturated ring C (no C2–C3 double bond, no 4-oxo, no 3-OH). Compared with quercetin, its expected scavenging activity is:", options:["Stronger, because catechol is the only feature that matters","Weaker, because it lacks the additive contributions of the C2–C3 double bond, 4-oxo, and 3-OH groups","Identical, since ring C substitution is irrelevant","Impossible to predict from structure"], correct:1},
+  {cat:"antioxidant", level:3, q:"Which best explains why flavonoids are described as having both a 'direct' and an 'indirect' antioxidant action against the nitric oxide/peroxynitrite system?", options:["They only ever act directly, never indirectly","Directly they scavenge NO• itself; indirectly they remove the oxygen radicals NO• would otherwise combine with to form peroxynitrite","They only act indirectly by inhibiting SOD","They convert NO• into vitamin E"], correct:1},
+  {cat:"antioxidant", level:3, q:"The oxidative-injury cascade (O2 → superoxide → H2O2 → hydroxyl radical → DNA/protein/lipid damage) is mechanistically linked to which other pharmacological topic discussed in the lecture?", options:["Genistein's phytoestrogenic activity","The antitumor/anticarcinogenic effects of flavonoids via prevention of ROS-induced DNA mutation","Hesperidin's use in Daflon","The taste-modifying function of flavonoids in plants"], correct:1},
+  {cat:"pharmacology", level:1, q:"Which two enzymes of the inflammatory pathway are inhibited by flavonoids?", options:["Amylase and lipase","Cyclooxygenase and 5-lipoxygenase","Trypsin and pepsin","ACE and renin"], correct:1},
+  {cat:"pharmacology", level:1, q:"Cyclooxygenase and lipoxygenase are involved in the release of which starting molecule for inflammation?", options:["Prostaglandin E2 directly","Arachidonic acid","Histamine","Bradykinin"], correct:1},
+  {cat:"pharmacology", level:1, q:"Which immune-cell process do flavonoids inhibit to reduce arachidonic acid release?", options:["Phagocytosis","Neutrophil degranulation","Lymphocyte proliferation","Mast cell maturation"], correct:1},
+  {cat:"pharmacology", level:1, q:"Which flavonoids inhibit DNA, RNA, and protein synthesis in tumor cells?", options:["Hesperidin and rutin","Quercetin and kaempferol","Genistein and daidzein","Catechin and silymarin"], correct:1},
+  {cat:"pharmacology", level:1, q:"Damage from reactive oxygen species to which type of gene is proposed to initiate or promote cancer?", options:["Housekeeping genes only","p53 / tumor suppressor genes","Ribosomal RNA genes","Mitochondrial DNA genes exclusively"], correct:1},
+  {cat:"pharmacology", level:1, q:"Which three flavonoids are highlighted for hepatoprotective activity?", options:["Genistein, myricetin, hesperidin","Silymarin, quercetin, rutin","Chalcone, catechin, tannin","Isoflavone, flavanone, flavonol"], correct:1},
+  {cat:"pharmacology", level:1, q:"Hepatoprotective flavonoids act partly by increasing hepatic levels of:", options:["Bilirubin","Glutathione","Albumin","Urea"], correct:1},
+  {cat:"pharmacology", level:1, q:"Rutin, hesperidin, and quercetin have historically been called:", options:["Vitamin C","Vitamin P","Vitamin K","Vitamin B12"], correct:1},
+  {cat:"pharmacology", level:1, q:"What effect do rutin, hesperidin, and quercetin have on blood vessels?", options:["They increase capillary fragility","They reduce capillary fragility","They have no vascular effect","They dilate arteries only"], correct:1},
+  {cat:"pharmacology", level:2, q:"Flavonoid inhibition of COX and 5-lipoxygenase reduces the formation of which downstream inflammatory compounds?", options:["Eicosanoids such as prostaglandins","Immunoglobulins","Complement proteins","Interferons"], correct:0},
+  {cat:"pharmacology", level:2, q:"What is glutathione's main protective role in the liver, enhanced by hepatoprotective flavonoids?", options:["Producing bile pigments","Detoxifying a wide range of drugs and chemicals","Storing glycogen","Synthesizing clotting factors"], correct:1},
+  {cat:"pharmacology", level:2, q:"Besides raising glutathione, hepatoprotective flavonoids also increase which hepatic process, aiding hepatocyte repair?", options:["Lipid storage","Protein synthesis","Bile acid excretion","Glycogenolysis"], correct:1},
+  {cat:"pharmacology", level:2, q:"Reducing heat shock proteins is significant in flavonoid anticancer action because these proteins:", options:["Are only found in normal healthy cells","Are highly expressed in cancer cells under stress and help them survive","Have no role in cancer biology","Directly cause DNA mutations"], correct:1},
+  {cat:"pharmacology", level:2, q:"Quercetin's anticancer action as a tyrosine kinase inhibitor works by preventing:", options:["DNA replication directly","Phosphorylation events that drive cancerous cell proliferation","Formation of new blood vessels only","Apoptosis entirely"], correct:1},
+  {cat:"pharmacology", level:2, q:"The drug Daflon 500 mg (containing hesperidin) is mainly used for:", options:["Peptic ulcer","Veno-lymphatic insufficiency and hemorrhoidal attacks","Hypertension","Bacterial infections"], correct:1},
+  {cat:"pharmacology", level:2, q:"How do flavonoids, as antioxidants, inhibit carcinogenesis at the cellular level?", options:["By promoting cell proliferation","By inhibiting cell proliferation via biochemical events associated with cellular growth","By increasing tumor vascularization","By increasing mutation rate"], correct:1},
+  {cat:"pharmacology", level:2, q:"What is the proposed sequence linking ROS to cancer, according to the antitumor-effects slide?", options:["ROS → direct tumor formation with no DNA involvement","ROS damages DNA → mutations in critical/tumor suppressor genes → initiation or progression of cancer","ROS → immediate cell death only","ROS has no link to cancer"], correct:1},
+  {cat:"pharmacology", level:3, q:"The three 'main mechanisms' of flavonoid anticancer action act at three different cellular levels. Which option correctly matches mechanism to level?", options:["Tyrosine kinase inhibition = gene level; p53 down-regulation = enzyme level","p53-gene down-regulation = gene level; heat shock protein reduction = stress-response level; tyrosine kinase inhibition = enzyme/signaling level","All three act purely at the membrane-transport level","All three act only at the level of DNA replication"], correct:1},
+  {cat:"pharmacology", level:3, q:"How are the anti-inflammatory and antitumor actions of flavonoids mechanistically connected through arachidonic acid metabolism?", options:["They are unrelated","COX/lipoxygenase-derived eicosanoids from arachidonic acid can promote both inflammation and tumor-promoting signaling, so their inhibition addresses both","Arachidonic acid is only relevant to hepatoprotection","Tumor cells cannot use the arachidonic acid pathway"], correct:1},
+  {cat:"pharmacology", level:3, q:"Quercetin and rutin both appear in the hepatoprotective list and the 'Vitamin P' vascular list. What does this dual appearance suggest?", options:["They have no other pharmacological activity","They display broad, multi-system protective activity rather than one narrow effect","They are chemically identical to hesperidin","They are toxic in combination"], correct:1},
+  {cat:"pharmacology", level:3, q:"Daflon's clinical indication for veno-lymphatic insufficiency is best explained by which upstream pharmacological property of its flavonoid content?", options:["Antitumor activity","Reduction of capillary permeability/fragility ('Vitamin P' effect)","Xanthine oxidase inhibition","Tyrosine kinase inhibition"], correct:1},
+  {cat:"pharmacology", level:3, q:"A flavonoid inhibits both COX-2 and inducible nitric oxide synthase during inflammation. Which two physiological pathways does it simultaneously affect?", options:["Only the arachidonic acid pathway","The arachidonic acid/prostaglandin pathway and the nitric oxide/peroxynitrite pathway","Only glutathione synthesis","Only xanthine oxidase activity"], correct:1},
+  {cat:"pharmacology", level:3, q:"Considering both the hepatoprotective mechanism (glutathione, protein synthesis) and the antitumor mechanism (reduced ROS-induced DNA damage), what common upstream property of flavonoids underlies both effects?", options:["Their antioxidant / free-radical-scavenging activity","Their molecular weight","Their solubility in water only","Their nitrogen content"], correct:0},
+  {cat:"drugs", level:1, q:"Silymarin is chemically classified as a:", options:["Flavone glycoside","Flavanonol (flavanolignan) mixture","Anthocyanin","Simple isoflavone"], correct:1},
+  {cat:"drugs", level:1, q:"Silymarin is obtained from the seeds of:", options:["Soybean","Milk thistle (Silybum marianum)","Citrus trees","Green tea plant"], correct:1},
+  {cat:"drugs", level:1, q:"Quercitrin and rutin are glycosides of which aglycone?", options:["Myricetin","Quercetin","Hesperetin","Genistein"], correct:1},
+  {cat:"drugs", level:1, q:"Quercetin inhibits which enzyme linked to uric acid formation, relevant in gout?", options:["Xanthine oxidase","Monoamine oxidase","Acetylcholinesterase","Alcohol dehydrogenase"], correct:0},
+  {cat:"drugs", level:1, q:"Myricetin is especially effective at protecting cells from:", options:["Bacterial infection","Carcinogenic mutation","Dehydration","Vitamin deficiency"], correct:1},
+  {cat:"drugs", level:1, q:"The aglycone of hesperidin is called:", options:["Hesperetin","Quercetin","Silybin","Genistin"], correct:0},
+  {cat:"drugs", level:1, q:"Hesperidin is found in high concentration in:", options:["Milk thistle seeds","Fruit of citrus trees","Soybean","Green tea leaves"], correct:1},
+  {cat:"drugs", level:1, q:"Genistein is classified as which type of flavonoid?", options:["Flavonol","Isoflavonoid","Anthocyanin","Chalcone"], correct:1},
+  {cat:"drugs", level:2, q:"Besides liver protection, silymarin is stated to help with all of the following EXCEPT:", options:["Lowering cholesterol levels","Reducing chemotherapy/radiation-induced cell damage","Curing bacterial pneumonia","Alzheimer's disease prevention/treatment"], correct:2},
+  {cat:"drugs", level:2, q:"Quercetin's antioxidant action helps 'reactivate' which vitamin?", options:["Vitamin C","Vitamin E (tocopherol)","Vitamin D","Vitamin K"], correct:1},
+  {cat:"drugs", level:2, q:"Reactive oxygen species accumulate in skin especially under which condition, where quercetin's antioxidant role becomes relevant?", options:["Cold exposure","Excessive sunlight exposure","High humidity","Low oxygen environments"], correct:1},
+  {cat:"drugs", level:2, q:"The branded drug containing hesperidin, used for hemorrhoidal attacks and venous insufficiency, is called:", options:["Simal","Daflon 500 mg","Liv.52","Prostanil"], correct:1},
+  {cat:"drugs", level:2, q:"Genistein's phytoestrogenic activity makes it useful in products aimed at:", options:["Male hair loss","Estrogen-deficiency symptoms","Diabetes management","Antibiotic resistance"], correct:1},
+  {cat:"drugs", level:2, q:"Myricetin is commonly derived from which type of food sources?", options:["Only red meat","Vegetables, fruits, nuts, and tea","Only dairy products","Only refined grains"], correct:1},
+  {cat:"drugs", level:3, q:"Silymarin being a 'flavanonol mixture' implies its components carry which ring-C features?", options:["A 4-oxo group and 3-OH, with ring C saturated","A C2-C3 double bond with no 4-oxo","Ring B attached at C-3","No oxygen substituents at all"], correct:0},
+  {cat:"drugs", level:3, q:"Quercetin is both hepatoprotective and a tyrosine kinase inhibitor with anticancer activity. How might these two roles act together in liver damage?", options:["They act in contradictory ways and cancel out","Antioxidant hepatoprotection supports hepatocyte repair while anti-proliferative signaling limits abnormal cell growth, simultaneously","Only the hepatoprotective role is pharmacologically real","Tyrosine kinase inhibition destroys the liver"], correct:1},
+  {cat:"drugs", level:3, q:"Rutin and quercitrin are both quercetin glycosides differing in attached sugar. What would most likely stay the same, and what may differ?", options:["Intrinsic activity differs, solubility stays the same","Intrinsic activity (from the shared aglycone) stays essentially the same; solubility/absorption may differ","Both activity and solubility are identical","Neither activity nor solubility depends on the sugar"], correct:1},
+  {cat:"drugs", level:3, q:"Hesperidin (citrus) and rutin (other sources) are both used clinically for capillary fragility. What shared property, not plant origin, explains this?", options:["Both are isoflavonoids","Both belong to the 'Vitamin P' group that reduces capillary permeability/fragility","Both inhibit xanthine oxidase","Both are hepatoprotective flavanonols"], correct:1},
+  {cat:"drugs", level:3, q:"Genistein's isoflavone (C-3 ring-B attachment) geometry, compared with a flavone (C-2 attachment) of similar hydroxylation, best explains which property?", options:["Its hepatoprotective action","Its ability to mimic estrogen and bind estrogen receptors","Its capillary-protective action","Its xanthine oxidase inhibition"], correct:1},
+  {cat:"drugs", level:3, q:"Why might combining silymarin and quercetin in a hepatoprotective product offer broader protection than either alone?", options:["Both work by an identical single mechanism, so combining adds nothing","Silymarin mainly raises glutathione/protein synthesis while quercetin additionally chelates iron and scavenges radicals — complementary mechanisms","Silymarin has no antioxidant activity at all","Quercetin has no role in liver protection"], correct:1}
+];
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+let quizState = [];
+let quizIndex = 0;
+let score = 0;
+let answeredCurrent = false;
+let activeLevelQuiz = 1;
+
+function renderLevelRowQuiz(){
+  const row = document.getElementById('level-row-quiz');
+  row.innerHTML = '';
+  [1,2,3].forEach(lv=>{
+    const chip = document.createElement('button');
+    chip.className = 'chip';
+    chip.textContent = levelLabels[lv];
+    chip.setAttribute('aria-pressed', lv === activeLevelQuiz ? 'true' : 'false');
+    chip.addEventListener('click', ()=>{ activeLevelQuiz = lv; renderLevelRowQuiz(); buildQuizState(); });
+    row.appendChild(chip);
+  });
+}
+
+function buildQuizState(){
+  const pool = quizBank.filter(q=>q.level===activeLevelQuiz);
+  const order = shuffle(pool.map((_,i)=>i));
+  quizState = order.map(i=>{
+    const item = pool[i];
+    const optsWithFlag = item.options.map((text,idx)=>({text, isCorrect: idx===item.correct}));
+    const shuffled = shuffle(optsWithFlag);
+    return {q:item.q, options:shuffled, answeredIndex:null};
+  });
+  quizIndex = 0;
+  score = 0;
+  answeredCurrent = false;
+  document.getElementById('quiz-results').classList.remove('active');
+  document.getElementById('quiz-card').classList.remove('hide');
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const total = quizState.length;
+  const item = quizState[quizIndex];
+  document.getElementById('quiz-qnum').textContent = `Question ${quizIndex+1} of ${total}`;
+  document.getElementById('quiz-q').textContent = item.q;
+  document.getElementById('quiz-score').textContent = `Score: ${score} / ${total}`;
+  document.getElementById('quiz-progress').style.width = ((quizIndex)/total*100) + '%';
+  document.getElementById('quiz-feedback').textContent = '';
+  document.getElementById('quiz-feedback').className = 'quiz-feedback';
+  answeredCurrent = item.answeredIndex !== null;
+
+  const optsEl = document.getElementById('quiz-options');
+  optsEl.innerHTML = '';
+  const letters = ['A','B','C','D','E','F'];
+  item.options.forEach((opt,idx)=>{
+    const b = document.createElement('button');
+    b.className = 'quiz-opt';
+    b.innerHTML = `<span class="letter">${letters[idx]}</span><span>${opt.text}</span>`;
+    if(answeredCurrent){
+      b.classList.add('locked');
+      if(opt.isCorrect) b.classList.add('correct');
+      else if(idx===item.answeredIndex) b.classList.add('wrong');
+      else b.classList.add('dim');
+    }
+    b.addEventListener('click', ()=>selectQuizOption(idx));
+    optsEl.appendChild(b);
+  });
+
+  document.getElementById('quiz-next').disabled = !answeredCurrent;
+  document.getElementById('quiz-next').textContent = (quizIndex === total-1) ? 'See results' : 'Next question';
+  if(answeredCurrent){
+    const correctOpt = item.options.find(o=>o.isCorrect);
+    const wasRight = item.options[item.answeredIndex].isCorrect;
+    const fb = document.getElementById('quiz-feedback');
+    fb.textContent = wasRight ? 'Correct.' : `Not quite — correct answer: ${correctOpt.text}`;
+    fb.className = 'quiz-feedback ' + (wasRight ? 'ok' : 'no');
+  }
+}
+
+function selectQuizOption(idx){
+  const item = quizState[quizIndex];
+  if(item.answeredIndex !== null) return;
+  item.answeredIndex = idx;
+  if(item.options[idx].isCorrect) score++;
+  renderQuizQuestion();
+}
+
+document.getElementById('quiz-next').addEventListener('click', ()=>{
+  const total = quizState.length;
+  if(quizIndex < total-1){
+    quizIndex++;
+    renderQuizQuestion();
+  } else {
+    finishQuiz();
+  }
+});
+
+function finishQuiz(){
+  const total = quizState.length;
+  document.getElementById('quiz-progress').style.width = '100%';
+  document.getElementById('quiz-card').classList.add('hide');
+  document.getElementById('quiz-results').classList.add('active');
+  document.getElementById('result-score').textContent = `${score} / ${total}`;
+  const review = document.getElementById('result-review');
+  review.innerHTML = '';
+  quizState.forEach((item,i)=>{
+    const userAns = item.options[item.answeredIndex];
+    const correctAns = item.options.find(o=>o.isCorrect);
+    const row = document.createElement('div');
+    row.className = 'rr-row ' + (userAns.isCorrect ? 'ok' : 'no');
+    row.innerHTML = `<div class="q">${i+1}. ${item.q}</div>
+      <div class="rr-ans">Your answer: ${userAns.text}${userAns.isCorrect ? '' : ' — Correct: ' + correctAns.text}</div>`;
+    review.appendChild(row);
+  });
+}
+
+document.getElementById('quiz-restart').addEventListener('click', buildQuizState);
+document.getElementById('quiz-retry').addEventListener('click', buildQuizState);
+
+renderLevelRowQuiz();
+buildQuizState();
+</script>
+</body>
+</html>
